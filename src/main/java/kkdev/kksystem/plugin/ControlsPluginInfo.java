@@ -49,9 +49,8 @@ public class ControlsPluginInfo  implements IPluginInfoRequest {
     
         String[] Ret=new String[1];
 
-        Ret[0]=PluginConsts.KK_PLUGIN_BASE_HID_DATA;
+//        Ret[0]=PluginConsts.KK_PLUGIN_BASE_HID_DATA;
         
         return Ret;
     }
-    
 }

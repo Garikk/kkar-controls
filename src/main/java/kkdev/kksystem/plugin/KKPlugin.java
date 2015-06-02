@@ -10,6 +10,7 @@ package kkdev.kksystem.plugin;
 import kkdev.kksystem.base.classes.plugins.PluginMessage;
 import kkdev.kksystem.base.classes.plugins.simple.KKPluginBase;
 import kkdev.kksystem.base.interfaces.IPluginBaseInterface;
+import kkdev.kksystem.plugin.controls.manager.ControlsManager;
 
 /**
  *
@@ -18,20 +19,20 @@ import kkdev.kksystem.base.interfaces.IPluginBaseInterface;
 public final class KKPlugin extends KKPluginBase {
     public KKPlugin() {
         super(new ControlsPluginInfo());
-      //  Global.PM=new ODB2Manager();
+        Global.PM=new ControlsManager();
     }
 
     @Override
     public void PluginInit(IPluginBaseInterface BaseConnector) {
         super.PluginInit(BaseConnector);
-       // Global.PM.InitODB2(this);
+        Global.PM.InitHID(this);
     }
 
    
     @Override
     public PluginMessage ExecutePin(PluginMessage Pin) {
         super.ExecutePin(Pin);
-       //Global.PM.ReceivePin(Pin.PinName, Pin.PinData);
+       Global.PM.ReceivePin(Pin.PinName, Pin.PinData);
         return null;
     }
 }
