@@ -16,19 +16,19 @@ public abstract class PluginSettings {
    public static final String HID_CONF = "kk_plugin_controls.json";
    private static SettingsManager Settings;
 
-    public static HIDConfig MainConfiguration;
+    public static ControlsConfig MainConfiguration;
 
     public static void InitConfig() {
-        Settings=new SettingsManager(HID_CONF,HIDConfig.class);
+        Settings=new SettingsManager(HID_CONF,ControlsConfig.class);
         
         
         System.out.println("[HID][CONFIG] Load configuration");
-        MainConfiguration=(HIDConfig)Settings.LoadConfig();
+        MainConfiguration=(ControlsConfig)Settings.LoadConfig();
 
         if (MainConfiguration == null) {
             System.out.println("[HID][CONFIG] Error Load configuration, try create default config");
             Settings.SaveConfig(kk_DefaultConfig.MakeDefaultConfig());
-            MainConfiguration=(HIDConfig)Settings.LoadConfig();
+            MainConfiguration=(ControlsConfig)Settings.LoadConfig();
         }
         if (MainConfiguration == null) {
             System.out.println("[HID][CONFIG] Load configuration, fatal");

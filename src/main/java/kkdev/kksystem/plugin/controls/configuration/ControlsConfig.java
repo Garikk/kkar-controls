@@ -9,7 +9,7 @@ package kkdev.kksystem.plugin.controls.configuration;
  *
  * @author blinov_is
  */
-public class HIDConfig {
+public class ControlsConfig {
     public enum ControlType {
         Button,
         ButtonWithStates,
@@ -18,20 +18,8 @@ public class HIDConfig {
      public enum AdapterType {
         RaspberryPI_B
     }
-     public class Control
-     {
-         String Name;
-         String ID;
-         String AdapterID;
-         String AdapterSource;
-     
-     }
-     public class Adapter
-     {
-         String Name;
-         String ID;
-         AdapterType Type;
-     }
+   
+    
      
      public Adapter[] Adapters;
      public Control[] Controls;

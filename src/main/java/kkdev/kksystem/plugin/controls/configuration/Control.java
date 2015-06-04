@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kkdev.kksystem.plugin.controls.adapters;
+package kkdev.kksystem.plugin.controls.configuration;
 
 /**
  *
  * @author blinov_is
  */
-public interface IHWAdapter {
-    public void RegisterHIDControl(String DevicePath, String Source, String ControlID,IHWAdapterCallback Callback);
+public class Control {
+
+    public String Name;
+    public String ID;
+    public String AdapterID;
+    public String AdapterSource;
+
 }

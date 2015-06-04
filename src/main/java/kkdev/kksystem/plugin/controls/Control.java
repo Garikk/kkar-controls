@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kkdev.kksystem.plugin;
+package kkdev.kksystem.plugin.controls;
 
 /**
  *
  * @author blinov_is
  */
-public class HIDControl {
+public class Control {
     
 }

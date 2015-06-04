@@ -1,4 +1,4 @@
-package kkdev.kksystem.plugin;
+package kkdev.kksystem.plugin.controls;
 
 
 
