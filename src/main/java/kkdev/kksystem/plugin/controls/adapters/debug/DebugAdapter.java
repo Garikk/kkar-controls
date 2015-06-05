@@ -5,10 +5,9 @@
  */
 package kkdev.kksystem.plugin.controls.adapters.debug;
 
-import kkdev.kksystem.plugin.controls.adapters.rpi.*;
-import java.util.HashMap;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
+import kkdev.kksystem.plugin.controls.configuration.Control;
 
 /**
  *
@@ -18,7 +17,7 @@ public class DebugAdapter implements IHWAdapter {
 
     
     @Override
-    public void RegisterHIDControl(String DevicePath, String Source, String ControlID, IHWAdapterCallback Callback) {
+    public void RegisterControl(String DevicePath, String Source, Control Ctrl, IHWAdapterCallback Callback) {
         
    
     }

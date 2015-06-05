@@ -15,5 +15,6 @@ public class Control {
     public String ID;
     public String AdapterID;
     public String AdapterSource;
+    public boolean Global;
 
 }

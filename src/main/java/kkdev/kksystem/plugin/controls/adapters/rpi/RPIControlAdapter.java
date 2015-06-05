@@ -8,6 +8,7 @@ package kkdev.kksystem.plugin.controls.adapters.rpi;
 import java.util.HashMap;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
+import kkdev.kksystem.plugin.controls.configuration.Control;
 
 /**
  *
@@ -15,7 +16,15 @@ import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
  */
 public class RPIControlAdapter implements IHWAdapter {
 
-    HashMap<String,IHWAdapterCallback> Controls;
+    HashMap<String,ACtrl> Controls;
+
+    
+    class ACtrl
+    {
+        IHWAdapterCallback Callback;
+        Control Ctrl;
+    }
+    
     
     public RPIControlAdapter()
             {
@@ -24,14 +33,24 @@ public class RPIControlAdapter implements IHWAdapter {
     
     
     @Override
-    public void RegisterHIDControl(String DevicePath, String Source, String ControlID, IHWAdapterCallback Callback) {
+    public void RegisterControl(String DevicePath, String Source, Control Ctrl, IHWAdapterCallback Callback) {
         
-        Controls.put(ControlID, Callback);
+        ACtrl Add=new ACtrl();
+        Add.Callback=Callback;
+        Add.Ctrl=Ctrl;
+        
+        Controls.put(Ctrl.ID, Add);
         RegisterEvent(DevicePath,Source);
     }
     
     
     private void RegisterEvent(String DevPath, String Source)
     {
+    }
+    private void FireEvent(String FiredControl)
+    {
+        ACtrl A=Controls.get(FiredControl);
+        A.Callback.Control_ChangeState(FiredControl,A.Ctrl.Global, 1);
+    
     }
 }

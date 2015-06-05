@@ -5,10 +5,12 @@
  */
 package kkdev.kksystem.plugin.controls.adapters;
 
+import kkdev.kksystem.plugin.controls.configuration.Control;
+
 /**
  *
  * @author blinov_is
  */
 public interface IHWAdapter {
-    public void RegisterHIDControl(String DevicePath, String Source, String ControlID,IHWAdapterCallback Callback);
+    public void RegisterControl(String DevicePath, String Source, Control Ctrl,IHWAdapterCallback Callback);
 }

@@ -52,6 +52,11 @@ public abstract class kk_DefaultConfig {
         DefConf.Controls[2].AdapterSource="3";
         DefConf.Controls[3].AdapterSource="4";
         
+        DefConf.Controls[0].Global=false;
+        DefConf.Controls[1].Global=false;
+        DefConf.Controls[2].Global=false;
+        DefConf.Controls[3].Global=true;
+        
         return DefConf;
     }
 }
