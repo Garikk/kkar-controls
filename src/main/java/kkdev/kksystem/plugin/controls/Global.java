@@ -12,5 +12,5 @@ import kkdev.kksystem.plugin.controls.manager.ControlsManager;
  * @author blinov_is
  */
 public abstract class Global {
-    public static ControlsManager PM;
+    public static ControlsManager PM; 
 }
