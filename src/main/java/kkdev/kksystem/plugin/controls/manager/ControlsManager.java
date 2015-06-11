@@ -113,7 +113,7 @@ public class ControlsManager extends PluginManagerControls {
 
     
     public void ReceivePin(String PinName, Object PinData) {
-        System.out.println("[DEBUG][HID] " + PinName);
+       // System.out.println("[DEBUG][HID] " + PinName);
         switch (PinName) {
             case PluginConsts.KK_PLUGIN_BASE_PIN_COMMAND:
                 ProcessBaseCommand((PinBaseCommand)PinData);
