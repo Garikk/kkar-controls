@@ -5,6 +5,8 @@
  */
 package kkdev.kksystem.plugin.controls.adapters.debug;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
 import kkdev.kksystem.plugin.controls.configuration.Control;
@@ -15,11 +17,34 @@ import kkdev.kksystem.plugin.controls.configuration.Control;
  */
 public class DebugAdapter implements IHWAdapter {
 
+    IHWAdapterCallback CB;
+    Control CTL;
+    boolean Active=false;
     
     @Override
     public void RegisterControl(String DevicePath, String Source, Control Ctrl, IHWAdapterCallback Callback) {
+        CB=Callback;
+        CTL=Ctrl;
         
-   
+        Timer tmr=new Timer();
+        tmr.schedule(new TimerTask(){
+
+            @Override
+            public void run() {
+                if (Active)
+                    CB.Control_Triggered(CTL.ID, true);
+            }
+        },1,3000);
+    }
+
+    @Override
+    public void SetActive() {
+        Active=true;
+    }
+
+    @Override
+    public void SetInactive() {
+        Active=false;
     }
     
     

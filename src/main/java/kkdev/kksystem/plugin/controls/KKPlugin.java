@@ -35,4 +35,12 @@ public final class KKPlugin extends KKPluginBase {
        Global.PM.ReceivePin(Pin.PinName, Pin.PinData);
         return null;
     }
+     @Override
+    public void PluginStart() {
+      Global.PM.PluginStart();
+    }
+     @Override
+    public void PluginStop() {
+      Global.PM.PluginStop();
+    }
 }

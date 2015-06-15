@@ -16,7 +16,8 @@ public class ControlsConfig {
         Selector
     }
      public enum AdapterType {
-        RaspberryPI_B
+        RaspberryPI_B,
+        Debug
     }
    
     

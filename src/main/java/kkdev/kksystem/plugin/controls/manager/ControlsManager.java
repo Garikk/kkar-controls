@@ -96,27 +96,43 @@ public class ControlsManager extends PluginManagerControls {
                 HWAdapters.put(CTR.AdapterID, CreateAdapter(CTR.AdapterID));
             }
            //
-                HWAdapters.get(CTR.AdapterID).RegisterControl(CTR.AdapterSource, CTR.AdapterSource,CTR,AdapterCallback);
+                HWAdapters.get(CTR.AdapterID).RegisterControl(CTR.AdapterSource, CTR.AdapterSource, CTR, AdapterCallback);
         }
     }
-    
+
     private IHWAdapter CreateAdapter(String AdapterID) {
         for (Adapter ADP : PluginSettings.MainConfiguration.Adapters) {
             if (ADP.ID.equals(AdapterID)) {
                 if (ADP.Type == ControlsConfig.AdapterType.RaspberryPI_B) {
                     return new RPIControlAdapter();
+                } else if (ADP.Type == ControlsConfig.AdapterType.Debug) {
+                    return new DebugAdapter();
                 }
             }
         }
         return new DebugAdapter();
     }
 
+    public void PluginStart()
+    {
+        for (String K:HWAdapters.keySet())
+        {
+            HWAdapters.get(K).SetActive();
+        }
+    }
+     public void PluginStop()
+    {
+        for (String K:HWAdapters.keySet())
+        {
+            HWAdapters.get(K).SetInactive();
+        }
+    }
     
     public void ReceivePin(String PinName, Object PinData) {
-       // System.out.println("[DEBUG][HID] " + PinName);
+        // System.out.println("[DEBUG][HID] " + PinName);
         switch (PinName) {
             case PluginConsts.KK_PLUGIN_BASE_PIN_COMMAND:
-                ProcessBaseCommand((PinBaseCommand)PinData);
+                ProcessBaseCommand((PinBaseCommand) PinData);
         }
 
     }

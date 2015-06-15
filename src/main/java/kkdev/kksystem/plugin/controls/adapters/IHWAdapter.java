@@ -13,4 +13,6 @@ import kkdev.kksystem.plugin.controls.configuration.Control;
  */
 public interface IHWAdapter {
     public void RegisterControl(String DevicePath, String Source, Control Ctrl,IHWAdapterCallback Callback);
+    public void SetActive();
+    public void SetInactive();
 }

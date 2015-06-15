@@ -18,6 +18,16 @@ public class RPIControlAdapter implements IHWAdapter {
 
     HashMap<String,ACtrl> Controls;
 
+    @Override
+    public void SetActive() {
+      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void SetInactive() {
+     //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     class ACtrl
     {
