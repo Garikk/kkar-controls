@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kkdev.kksystem.plugin.controls.configuration;
+package kkdev.kksystem.plugin1.controls;
+
+import kkdev.kksystem.plugin1.controls.manager.ControlsManager;
 
 /**
  *
  * @author blinov_is
  */
- public class Adapter
-     {
-         public String Name;
-         public String ID;
-         public ControlsConfig.AdapterType Type;
-     }
+public abstract class Global {
+    public static ControlsManager PM; 
+}

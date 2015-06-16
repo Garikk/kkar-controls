@@ -1,4 +1,4 @@
-package kkdev.kksystem.plugin.controls.manager;
+package kkdev.kksystem.plugin1.controls.manager;
 
 import java.util.HashMap;
 import kkdev.kksystem.base.classes.base.PinBaseCommand;
@@ -8,15 +8,15 @@ import kkdev.kksystem.base.constants.PluginConsts;
 import static kkdev.kksystem.base.constants.SystemConsts.KK_BASE_FEATURES_ODB_DIAG_UID;
 import static kkdev.kksystem.base.constants.SystemConsts.KK_BASE_FEATURES_SYSTEM_BROADCAST_UID;
 import static kkdev.kksystem.base.constants.SystemConsts.KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID;
-import kkdev.kksystem.plugin.controls.KKPlugin;
-import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
-import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
-import kkdev.kksystem.plugin.controls.adapters.debug.DebugAdapter;
-import kkdev.kksystem.plugin.controls.adapters.rpi.RPIControlAdapter;
-import kkdev.kksystem.plugin.controls.configuration.Adapter;
-import kkdev.kksystem.plugin.controls.configuration.Control;
-import kkdev.kksystem.plugin.controls.configuration.ControlsConfig;
-import kkdev.kksystem.plugin.controls.configuration.PluginSettings;
+import kkdev.kksystem.plugin1.controls.KKPlugin;
+import kkdev.kksystem.plugin1.controls.adapters.IHWAdapter;
+import kkdev.kksystem.plugin1.controls.adapters.IHWAdapterCallback;
+import kkdev.kksystem.plugin1.controls.adapters.debug.DebugAdapter;
+import kkdev.kksystem.plugin1.controls.adapters.rpi.RPIControlAdapter;
+import kkdev.kksystem.plugin1.controls.configuration.Adapter;
+import kkdev.kksystem.plugin1.controls.configuration.Control;
+import kkdev.kksystem.plugin1.controls.configuration.ControlsConfig;
+import kkdev.kksystem.plugin1.controls.configuration.PluginSettings;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

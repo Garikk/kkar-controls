@@ -1,4 +1,4 @@
-package kkdev.kksystem.plugin.controls;
+package kkdev.kksystem.plugin1.controls;
 
 
 
@@ -10,7 +10,7 @@ package kkdev.kksystem.plugin.controls;
 import kkdev.kksystem.base.classes.plugins.PluginMessage;
 import kkdev.kksystem.base.classes.plugins.simple.KKPluginBase;
 import kkdev.kksystem.base.interfaces.IPluginBaseInterface;
-import kkdev.kksystem.plugin.controls.manager.ControlsManager;
+import kkdev.kksystem.plugin1.controls.manager.ControlsManager;
 
 /**
  *
