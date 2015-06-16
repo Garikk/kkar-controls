@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kkdev.kksystem.plugin1.controls.configuration;
+package kkdev.kksystem.plugin.controls.configuration;
 
 import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_BACK;
 import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_DOWN;
 import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_ENTER;
 import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_UP;
-import kkdev.kksystem.plugin1.controls.configuration.ControlsConfig.AdapterType;
+import kkdev.kksystem.plugin.controls.configuration.ControlsConfig.AdapterType;
 
 
 /**

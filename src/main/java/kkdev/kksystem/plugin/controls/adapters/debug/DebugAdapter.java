@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kkdev.kksystem.plugin1.controls.adapters.debug;
+package kkdev.kksystem.plugin.controls.adapters.debug;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import kkdev.kksystem.plugin1.controls.adapters.IHWAdapter;
-import kkdev.kksystem.plugin1.controls.adapters.IHWAdapterCallback;
-import kkdev.kksystem.plugin1.controls.configuration.Control;
+import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
+import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
+import kkdev.kksystem.plugin.controls.configuration.Control;
 
 /**
  *

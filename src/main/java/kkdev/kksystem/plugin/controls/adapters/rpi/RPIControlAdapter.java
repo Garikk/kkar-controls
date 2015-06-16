@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kkdev.kksystem.plugin1.controls.adapters.rpi;
+package kkdev.kksystem.plugin.controls.adapters.rpi;
 
 import java.util.HashMap;
-import kkdev.kksystem.plugin1.controls.adapters.IHWAdapter;
-import kkdev.kksystem.plugin1.controls.adapters.IHWAdapterCallback;
-import kkdev.kksystem.plugin1.controls.configuration.Control;
+import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
+import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
+import kkdev.kksystem.plugin.controls.configuration.Control;
 
 /**
  *

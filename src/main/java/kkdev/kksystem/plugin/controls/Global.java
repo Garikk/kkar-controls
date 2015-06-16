@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kkdev.kksystem.plugin1.controls;
+package kkdev.kksystem.plugin.controls;
+
+import kkdev.kksystem.plugin.controls.manager.ControlsManager;
 
 /**
  *
  * @author blinov_is
  */
-public class HWAdapter {
-    
+public abstract class Global {
+    public static ControlsManager PM; 
 }
