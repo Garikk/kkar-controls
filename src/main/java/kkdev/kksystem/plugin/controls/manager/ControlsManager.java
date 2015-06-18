@@ -5,8 +5,6 @@ import kkdev.kksystem.base.classes.base.PinBaseCommand;
 import kkdev.kksystem.base.classes.controls.PinControlData;
 import kkdev.kksystem.base.classes.plugins.simple.managers.PluginManagerControls;
 import kkdev.kksystem.base.constants.PluginConsts;
-import static kkdev.kksystem.base.constants.SystemConsts.KK_BASE_FEATURES_ODB_DIAG_UID;
-import static kkdev.kksystem.base.constants.SystemConsts.KK_BASE_FEATURES_SYSTEM_BROADCAST_UID;
 import static kkdev.kksystem.base.constants.SystemConsts.KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID;
 import kkdev.kksystem.plugin.controls.KKPlugin;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
@@ -29,12 +27,12 @@ import kkdev.kksystem.plugin.controls.configuration.PluginSettings;
  */
 public class ControlsManager extends PluginManagerControls {
     
-    private String CurrentFeature;
+
     private final IHWAdapterCallback AdapterCallback;
     HashMap<String, IHWAdapter> HWAdapters;
 
     public ControlsManager() {
-        
+        CurrentFeature="";
         this.AdapterCallback = new IHWAdapterCallback() {
             
             @Override
@@ -129,18 +127,20 @@ public class ControlsManager extends PluginManagerControls {
     }
     
     public void ReceivePin(String PinName, Object PinData) {
-        // System.out.println("[DEBUG][HID] " + PinName);
         switch (PinName) {
             case PluginConsts.KK_PLUGIN_BASE_PIN_COMMAND:
                 ProcessBaseCommand((PinBaseCommand) PinData);
         }
-
+     
     }
       private void ProcessBaseCommand(PinBaseCommand Command) {
         switch (Command.BaseCommand) {
             case CHANGE_FEATURE:
-                System.out.println("[Controls][MANAGER] Feature changed >> " + CurrentFeature + " >> " + Command.ChangeFeatureID);
-                CurrentFeature=Command.ChangeFeatureID;
+                if (!CurrentFeature.equals(Command.ChangeFeatureID))
+                {
+                    System.out.println("[Controls][MANAGER] Feature changed >> " + CurrentFeature + " >> " + Command.ChangeFeatureID);
+                    CurrentFeature=Command.ChangeFeatureID;
+                }
                 break;
             case PLUGIN:
                 break;
