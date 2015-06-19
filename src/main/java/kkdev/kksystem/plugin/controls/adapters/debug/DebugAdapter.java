@@ -22,7 +22,7 @@ public class DebugAdapter implements IHWAdapter {
     boolean Active=false;
     
     @Override
-    public void RegisterControl(String DevicePath, String Source, Control Ctrl, IHWAdapterCallback Callback) {
+    public void RegisterControl(Control Ctrl, IHWAdapterCallback Callback) {
         CB=Callback;
         CTL=Ctrl;
         
@@ -32,7 +32,7 @@ public class DebugAdapter implements IHWAdapter {
             @Override
             public void run() {
                 if (Active)
-                    CB.Control_Triggered(CTL.ID, true);
+                    CB.Control_Triggered(CTL.ID, CTL.Global);
             }
         },1,3000);
     }

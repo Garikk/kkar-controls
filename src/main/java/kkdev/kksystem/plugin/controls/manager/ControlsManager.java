@@ -94,7 +94,7 @@ public class ControlsManager extends PluginManagerControls {
                 HWAdapters.put(CTR.AdapterID, CreateAdapter(CTR.AdapterID));
             }
            //
-                HWAdapters.get(CTR.AdapterID).RegisterControl(CTR.AdapterSource, CTR.AdapterSource, CTR, AdapterCallback);
+                HWAdapters.get(CTR.AdapterID).RegisterControl(CTR, AdapterCallback);
         }
     }
 
