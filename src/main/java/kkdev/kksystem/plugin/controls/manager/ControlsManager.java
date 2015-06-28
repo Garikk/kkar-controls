@@ -37,6 +37,7 @@ public class ControlsManager extends PluginManagerControls {
             
             @Override
             public void Control_Triggered(String ControlID, boolean Global) {
+
                 if (Global)
                     CONTROL_SendPluginMessageData(KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID, ControlID, PinControlData.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
                 else
