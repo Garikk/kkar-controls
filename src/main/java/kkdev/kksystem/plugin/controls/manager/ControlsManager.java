@@ -34,44 +34,45 @@ public class ControlsManager extends PluginManagerControls {
     public ControlsManager() {
         CurrentFeature="";
         this.AdapterCallback = new IHWAdapterCallback() {
-            
+
             @Override
-            public void Control_Triggered(String ControlID, boolean Global) {
-                if (Global)
-                    CONTROL_SendPluginMessageData(KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID, ControlID, PinControlData.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
-                else
-                    CONTROL_SendPluginMessageData(CurrentFeature, ControlID, PinControlData.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
+            public void Control_Triggered(Control Ctrl) {
+
+                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
             }
-            
+
             @Override
-            public void Control_SwitchOn(String ControlID, boolean Global) {
-                if (Global)
-                    CONTROL_SendPluginMessageData(KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID, ControlID, PinControlData.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
-                else
-                    CONTROL_SendPluginMessageData(CurrentFeature, ControlID, PinControlData.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
+            public void Control_SwitchOn(Control Ctrl) {
+
+                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
             }
-            
+
             @Override
-            public void Control_SwitchOff(String ControlID, boolean Global) {
-                if (Global)
-                    CONTROL_SendPluginMessageData(KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID, ControlID, PinControlData.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
-                else
-                    CONTROL_SendPluginMessageData(CurrentFeature, ControlID, PinControlData.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
+            public void Control_SwitchOff(Control Ctrl) {
+
+                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
             }
-            
+
             @Override
-            public void Control_ChangeState(String ControlID, boolean Global, int State) {
-                if (Global)
-                    CONTROL_SendPluginMessageData(KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID, ControlID, PinControlData.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
-                else
-                    CONTROL_SendPluginMessageData(CurrentFeature, ControlID, PinControlData.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
+            public void Control_ChangeState(Control Ctrl, int State) {
+
+                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
             }
-             @Override
-            public void Control_LongPress(String ControlID, boolean Global, int State) {
-                if (Global)
-                    CONTROL_SendPluginMessageData(KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID, ControlID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
-                else
-                    CONTROL_SendPluginMessageData(CurrentFeature, ControlID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
+
+            @Override
+            public void Control_LongPress(Control Ctrl, int State) {
+
+                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
+            }
+
+            private String GetTargetFeature(Control Ctrl) {
+                if (Ctrl.FixedFeature) {
+                    return Ctrl.FixedFeatureTarget;
+                } else if (Ctrl.Global) {
+                    return KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID;
+                } else {
+                    return CurrentFeature;
+                }
             }
         };
     }
