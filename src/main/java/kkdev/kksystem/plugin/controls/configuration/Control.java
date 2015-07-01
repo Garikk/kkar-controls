@@ -16,5 +16,7 @@ public class Control {
     public String AdapterID;
     public String AdapterSource;
     public boolean Global;
+    public boolean FixedFeature;
+    public String FixedFeatureTarget;
 
 }
