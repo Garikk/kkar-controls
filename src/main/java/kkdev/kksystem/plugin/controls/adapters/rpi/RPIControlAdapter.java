@@ -81,7 +81,7 @@ public class RPIControlAdapter implements IHWAdapter {
 
     private void FireEvent(String FiredControl) {
         ACtrl A = Controls.get(FiredControl);
-        A.Callback.Control_Triggered(FiredControl, A.Ctrl.Global);
+        A.Callback.Control_Triggered(A.Ctrl);
 
     }
     
