@@ -35,7 +35,7 @@ public class DebugAdapter implements IHWAdapter {
             @Override
             public void run() {
                 if (Active)
-                    CB.Control_Triggered(CTL.ID, CTL.Global);
+                    CB.Control_Triggered(CTL);
             }
         },1,3000);
     }
