@@ -5,14 +5,16 @@
  */
 package kkdev.kksystem.plugin.controls.adapters;
 
+import kkdev.kksystem.plugin.controls.configuration.Control;
+
 /**
  *
  * @author blinov_is
  */
 public interface IHWAdapterCallback {
-    public void Control_Triggered(String ControlID,boolean Global);
-    public void Control_SwitchOn(String ControlID,boolean Global);
-    public void Control_SwitchOff(String ControlID,boolean Global);
-    public void Control_ChangeState(String ControlID,boolean Global, int State);
-    public void Control_LongPress(String ControlID,boolean Global, int State);
+    public void Control_Triggered(Control Ctrl);
+    public void Control_SwitchOn(Control Ctrl);
+    public void Control_SwitchOff(Control Ctrl);
+    public void Control_ChangeState(Control Ctrl, int State);
+    public void Control_LongPress(Control Ctrl, int State);
 }
