@@ -80,10 +80,7 @@ public class ControlsManager extends PluginManagerControls {
     public void InitControls(KKPlugin PConnector) {
         Connector = PConnector;
         //
-        System.out.println("[Controls][INIT] ODB adapter initialising");
-        System.out.println("[Controls][CONFIG] Load configuration");
         PluginSettings.InitConfig();
-        System.out.println("[Controls][CONFIG] Connect adapters");
         InitAdapters();
     }
 

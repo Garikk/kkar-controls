@@ -50,12 +50,12 @@ public abstract class kk_DefaultConfig {
         DefConf.Controls[2].Name="Enter";
         DefConf.Controls[3].Name="Back";
         
-        DefConf.Controls[0].AdapterID="KK_RPI_Adapter";
-        DefConf.Controls[1].AdapterID="KK_RPI_Adapter";
-        DefConf.Controls[2].AdapterID="KK_RPI_Adapter";
-        DefConf.Controls[3].AdapterID="KK_RPI_Adapter";
+        DefConf.Controls[0].AdapterID="DBG_Adapter";
+        DefConf.Controls[1].AdapterID="DBG_Adapter";
+        DefConf.Controls[2].AdapterID="DBG_Adapter";
+        DefConf.Controls[3].AdapterID="DBG_Adapter";
         
-        DefConf.Controls[0].AdapterSource="3"; //Change this to real rpi pin numbers
+        DefConf.Controls[0].AdapterSource="3"; //change to your rpi pin numbers
         DefConf.Controls[1].AdapterSource="12";
         DefConf.Controls[2].AdapterSource="13";
         DefConf.Controls[3].AdapterSource="14";
