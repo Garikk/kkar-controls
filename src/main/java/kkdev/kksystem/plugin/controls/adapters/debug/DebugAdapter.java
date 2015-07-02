@@ -42,7 +42,7 @@ public class DebugAdapter implements IHWAdapter {
 
     @Override
     public void SetActive() {
-        Active=true;
+        Active=false;
     }
 
     @Override
