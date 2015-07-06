@@ -9,7 +9,7 @@ import static kkdev.kksystem.base.constants.SystemConsts.KK_BASE_FEATURES_SYSTEM
 import kkdev.kksystem.plugin.controls.KKPlugin;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
-import kkdev.kksystem.plugin.controls.adapters.debug.DebugAdapter;
+import kkdev.kksystem.plugin.controls.adapters.debug.DebugAdapterConsole;
 import kkdev.kksystem.plugin.controls.adapters.rpi.RPIControlAdapter;
 import kkdev.kksystem.plugin.controls.configuration.Adapter;
 import kkdev.kksystem.plugin.controls.configuration.Control;
@@ -102,11 +102,11 @@ public class ControlsManager extends PluginManagerControls {
                 if (ADP.Type == ControlsConfig.AdapterType.RaspberryPI_B) {
                     return new RPIControlAdapter();
                 } else if (ADP.Type == ControlsConfig.AdapterType.Debug) {
-                    return new DebugAdapter();
+                    return new DebugAdapterConsole();
                 }
             }
         }
-        return new DebugAdapter();
+        return new DebugAdapterConsole();
     }
 
     public void PluginStart()
