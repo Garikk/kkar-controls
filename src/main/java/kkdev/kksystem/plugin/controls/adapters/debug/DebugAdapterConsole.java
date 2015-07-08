@@ -43,6 +43,11 @@ public class DebugAdapterConsole implements IHWAdapter {
                 String Check;
 
                 while (!Stop) {
+                    if (System.console()==null){
+                        Stop=true;
+                        continue;
+                    }
+                    
                     Check = System.console().readLine();
                     System.out.println(Check.length());
                     
