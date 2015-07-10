@@ -53,20 +53,19 @@ public class DebugAdapterConsole implements IHWAdapter {
                     
                     switch (Check) {
                          case "1":
-                             System.out.println("UP");
                             CB.Control_Triggered(Controls.get(DEF_BTN_UP));
                             break;
                         case "2":
-                            System.out.println("DOWN");
                             CB.Control_Triggered(Controls.get(DEF_BTN_DOWN));
                             break;
                         case "3":
-                            System.out.println("ENTER");
                             CB.Control_Triggered(Controls.get(DEF_BTN_ENTER));
                             break;
                         case "4":
-                            System.out.println("BACK");
                             CB.Control_Triggered(Controls.get(DEF_BTN_BACK));
+                            break;
+                        case "44":
+                            CB.Control_LongPress(Controls.get(DEF_BTN_BACK),1);
                             break;
                     }
                 }

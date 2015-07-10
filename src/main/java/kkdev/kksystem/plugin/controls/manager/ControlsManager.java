@@ -61,7 +61,7 @@ public class ControlsManager extends PluginManagerControls {
 
             @Override
             public void Control_LongPress(Control Ctrl, int State) {
-
+                System.out.println("LP");
                 CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
             }
 
@@ -136,7 +136,6 @@ public class ControlsManager extends PluginManagerControls {
             case CHANGE_FEATURE:
                 if (!CurrentFeature.equals(Command.ChangeFeatureID))
                 {
-                    System.out.println("[Controls][MANAGER] Feature changed >> " + CurrentFeature + " >> " + Command.ChangeFeatureID);
                     CurrentFeature=Command.ChangeFeatureID;
                 }
                 break;
