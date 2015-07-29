@@ -80,7 +80,9 @@ public class ControlsManager extends PluginManagerControls {
     public void InitControls(KKPlugin PConnector) {
         Connector = PConnector;
         //
-        PluginSettings.InitConfig();
+        //Only one feature supported by now
+        //
+       PluginSettings.InitConfig(PConnector.GlobalConfID,PConnector.Features[0],PConnector.PluginInfo.GetPluginInfo().PluginUUID);
         InitAdapters();
     }
 

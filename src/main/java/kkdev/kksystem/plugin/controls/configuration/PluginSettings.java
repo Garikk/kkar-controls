@@ -6,6 +6,7 @@
 package kkdev.kksystem.plugin.controls.configuration;
 
 import kkdev.kksystem.base.classes.plugins.simple.SettingsManager;
+import kkdev.kksystem.plugin.controls.ControlsPluginInfo;
 
 /**
  *
@@ -13,12 +14,16 @@ import kkdev.kksystem.base.classes.plugins.simple.SettingsManager;
  */
 public abstract class PluginSettings {
 
-   public static final String HID_CONF = "kk_plugin_controls.json";
+   public static String HID_CONF;
    private static SettingsManager Settings;
 
     public static ControlsConfig MainConfiguration;
 
-    public static void InitConfig() {
+    public static void InitConfig(String GlobalConfigUID, String FeatureUID,String MyUID) {
+        //
+        HID_CONF=GlobalConfigUID+"_"+FeatureUID+"_"+MyUID + ".json";
+        //
+        
         Settings=new SettingsManager(HID_CONF,ControlsConfig.class);
         
         
