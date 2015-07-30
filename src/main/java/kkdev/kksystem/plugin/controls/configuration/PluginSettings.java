@@ -19,9 +19,9 @@ public abstract class PluginSettings {
 
     public static ControlsConfig MainConfiguration;
 
-    public static void InitConfig(String GlobalConfigUID, String FeatureUID,String MyUID) {
+    public static void InitConfig(String GlobalConfigUID, String MyUID) {
         //
-        HID_CONF=GlobalConfigUID+"_"+FeatureUID+"_"+MyUID + ".json";
+        HID_CONF=GlobalConfigUID+"_"+MyUID + ".json";
         //
         
         Settings=new SettingsManager(HID_CONF,ControlsConfig.class);

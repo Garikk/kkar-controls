@@ -82,7 +82,7 @@ public class ControlsManager extends PluginManagerControls {
         //
         //Only one feature supported by now
         //
-       PluginSettings.InitConfig(PConnector.GlobalConfID,PConnector.Features[0],PConnector.PluginInfo.GetPluginInfo().PluginUUID);
+       PluginSettings.InitConfig(PConnector.GlobalConfID,PConnector.PluginInfo.GetPluginInfo().PluginUUID);
         InitAdapters();
     }
 
