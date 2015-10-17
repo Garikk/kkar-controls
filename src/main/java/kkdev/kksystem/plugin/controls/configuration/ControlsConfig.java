@@ -18,11 +18,10 @@ public class ControlsConfig extends ExternalConfiguration {
         Selector
     }
      public enum AdapterType {
+        External_TaggedInt,
         RaspberryPI_B,
         Debug
     }
-   
-    
      
      public Adapter[] Adapters;
      public Control[] Controls;
