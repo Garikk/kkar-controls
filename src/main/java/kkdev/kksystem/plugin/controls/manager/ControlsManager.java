@@ -11,6 +11,7 @@ import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
 import kkdev.kksystem.plugin.controls.adapters.debug.DebugAdapterConsole;
 import kkdev.kksystem.plugin.controls.adapters.rpi.RPIControlAdapter;
+import kkdev.kksystem.plugin.controls.adapters.rpi.RPII2CAdapter;
 import kkdev.kksystem.plugin.controls.configuration.Adapter;
 import kkdev.kksystem.plugin.controls.configuration.Control;
 import kkdev.kksystem.plugin.controls.configuration.ControlsConfig;
@@ -105,6 +106,8 @@ public class ControlsManager extends PluginManagerControls {
                     return new RPIControlAdapter();
                 } else if (ADP.Type == ControlsConfig.AdapterType.Debug) {
                     return new DebugAdapterConsole();
+                } else if (ADP.Type == ControlsConfig.AdapterType.RaspberryPI_B_PI4J_I2C) {
+                    return new RPII2CAdapter();
                 }
             }
         }

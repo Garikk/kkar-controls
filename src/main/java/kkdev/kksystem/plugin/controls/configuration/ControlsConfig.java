@@ -20,6 +20,7 @@ public class ControlsConfig extends ExternalConfiguration {
      public enum AdapterType {
         External_TaggedInt,
         RaspberryPI_B,
+        RaspberryPI_B_PI4J_I2C,
         Debug
     }
      
