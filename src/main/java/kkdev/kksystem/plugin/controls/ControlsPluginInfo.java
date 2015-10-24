@@ -9,7 +9,6 @@ package kkdev.kksystem.plugin.controls;
  */
 
 
-import kkdev.kksystem.base.constants.PluginConsts.KK_PLUGIN_TYPE;
 import kkdev.kksystem.base.classes.plugins.PluginInfo;
 import kkdev.kksystem.base.classes.plugins.simple.IPluginInfoRequest;
 import kkdev.kksystem.base.constants.PluginConsts;
@@ -26,7 +25,6 @@ public class ControlsPluginInfo  implements IPluginInfoRequest {
         
         Ret.PluginName="KKControlsPlugin";
         Ret.PluginDescription="Basic HW Controls plugin (Buttons etc..)";
-        Ret.PluginType = KK_PLUGIN_TYPE.PLUGIN_INPUT;
         Ret.PluginVersion=1;
         Ret.Enabled=true;
         Ret.ReceivePins = GetMyReceivePinInfo();
