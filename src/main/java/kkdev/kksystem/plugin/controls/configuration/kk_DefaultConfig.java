@@ -38,6 +38,8 @@ public abstract class kk_DefaultConfig {
         DefConf.Adapters[2].ID="RPI_I2C";
         DefConf.Adapters[2].Name="I2C_Buttons";
         DefConf.Adapters[2].Type=AdapterType.RaspberryPI_B_PI4J_I2C;
+        DefConf.Adapters[2].BusID=1;
+        DefConf.Adapters[2].DeviceID=0x2b;
         //
         // 
         DefConf.Controls=new Control[28];

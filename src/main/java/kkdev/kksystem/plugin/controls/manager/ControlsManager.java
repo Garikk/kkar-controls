@@ -107,7 +107,7 @@ public class ControlsManager extends PluginManagerControls {
                 } else if (ADP.Type == ControlsConfig.AdapterType.Debug) {
                     return new DebugAdapterConsole();
                 } else if (ADP.Type == ControlsConfig.AdapterType.RaspberryPI_B_PI4J_I2C) {
-                    return new RPII2CAdapter();
+                    return new RPII2CAdapter(ADP);
                 }
             }
         }

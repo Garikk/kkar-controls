@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
+import kkdev.kksystem.plugin.controls.configuration.Adapter;
 import kkdev.kksystem.plugin.controls.configuration.Control;
 
 /**
@@ -24,12 +25,20 @@ public class RPII2CAdapter implements IHWAdapter  {
 
     HashMap<String, DevCtrl> Devices;
     I2CBus BusI2C;
+    Adapter Configuration;
 
-      public RPII2CAdapter() {
+      public RPII2CAdapter(Adapter Conf) {
         Devices = new HashMap<>();
-          
+        Configuration=Conf;
         try {
-            BusI2C= I2CFactory.getInstance(I2CBus.BUS_1);
+            if (Configuration.BusID==1)
+            {
+                BusI2C= I2CFactory.getInstance(I2CBus.BUS_1);
+            }
+            else
+            {
+                BusI2C= I2CFactory.getInstance(I2CBus.BUS_0);
+            }
         } catch (IOException ex) {
             Logger.getLogger(RPII2CAdapter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -79,17 +88,17 @@ public class RPII2CAdapter implements IHWAdapter  {
     }
 
     private void FireEvent(String DevID,byte EventType, byte Val) {
-              System.out.println(EventType + " " + Val);
-        if (EventType==1)
+        if (EventType==49) //49 = ASCII  -> 1
         {
+           //System.out.println("BUTTON " + EventType + " " + Val);
            Devices.get(DevID).Callback.Control_Triggered(Devices.get(DevID).MappedControls.get(String.valueOf((char)Val)));
-        }
+       }
     }
     
     private DevCtrl ConnectI2CDevice(String DeviceID)
     {
         try {
-            return new DevCtrl(DeviceID,BusI2C.getDevice(43));
+            return new DevCtrl(DeviceID,BusI2C.getDevice(Configuration.DeviceID));
         } catch (IOException ex) {
             Logger.getLogger(RPII2CAdapter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -111,8 +120,14 @@ public class RPII2CAdapter implements IHWAdapter  {
                     while (!Stop) {
                         byte[] Dat=new byte[2];
                         try {
-                            DV.read(43,Dat,0,2);//, 0, 2);
-                            FireEvent(DevID,Dat[0],Dat[1]);
+                            //System.out.println(DV.read(Dat,0,2));
+                            DV.read(Dat,0,2);
+                            
+                            if (Dat[1]!=-1)
+                            {
+                                FireEvent(DevID,Dat[0],Dat[1]);
+                            }
+                          //  }
                             
                         } catch (IOException ex) {
                             Logger.getLogger(RPII2CAdapter.class.getName()).log(Level.SEVERE, null, ex);

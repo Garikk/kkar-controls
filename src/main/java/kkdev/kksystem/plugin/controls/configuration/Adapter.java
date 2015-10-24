@@ -14,4 +14,6 @@ package kkdev.kksystem.plugin.controls.configuration;
          public String Name;
          public String ID;
          public ControlsConfig.AdapterType Type;
+         public int BusID;
+         public int DeviceID;
      }
