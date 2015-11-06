@@ -26,10 +26,19 @@ public class RPII2CAdapter implements IHWAdapter  {
     HashMap<String, DevCtrl> Devices;
     I2CBus BusI2C;
     Adapter Configuration;
+    boolean NotWork;
+
+    private static String OS = System.getProperty("os.name").toLowerCase();
 
       public RPII2CAdapter(Adapter Conf) {
         Devices = new HashMap<>();
         Configuration=Conf;
+        
+        NotWork=(OS.indexOf("win") >= 0);
+        
+        if (NotWork)
+            return;
+        
         try {
             if (Configuration.BusID==1)
             {
@@ -41,13 +50,17 @@ public class RPII2CAdapter implements IHWAdapter  {
             }
         } catch (IOException ex) {
             Logger.getLogger(RPII2CAdapter.class.getName()).log(Level.SEVERE, null, ex);
+
         }
     }
-    
+    public static boolean isWindows() {
+        return (OS.indexOf("win") >= 0);
+    }
     
     @Override
     public void SetActive() {
-       StartBusReading();
+        if (NotWork)
+            StartBusReading();
     }
 
     @Override
@@ -72,8 +85,10 @@ public class RPII2CAdapter implements IHWAdapter  {
 
     @Override
     public void RegisterControl(Control Ctrl, IHWAdapterCallback Callback) {
-
-        RegisterEvent(Ctrl,Callback);
+        if (NotWork)
+            return;
+            
+            RegisterEvent(Ctrl,Callback);
     }
     
     private void RegisterEvent(Control Ctrl,IHWAdapterCallback Callback) {
@@ -97,6 +112,9 @@ public class RPII2CAdapter implements IHWAdapter  {
     
     private DevCtrl ConnectI2CDevice(String DeviceID)
     {
+        if (NotWork)
+            return null;
+            
         try {
             return new DevCtrl(DeviceID,BusI2C.getDevice(Configuration.DeviceID));
         } catch (IOException ex) {
