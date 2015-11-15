@@ -56,10 +56,7 @@ public class RPII2CAdapter implements IHWAdapter  {
 
         }
     }
-    public static boolean isWindows() {
-        return (OS.indexOf("win") >= 0);
-    }
-    
+
     @Override
     public void SetActive() {
         if (NotWork)

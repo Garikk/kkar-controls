@@ -5,10 +5,7 @@
  */
 package kkdev.kksystem.plugin.controls.adapters.unilinux;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
 import kkdev.kksystem.plugin.controls.configuration.Adapter;
@@ -29,25 +26,7 @@ public class UNIL_RS232Adapter implements IHWAdapter  {
       public UNIL_RS232Adapter(Adapter Conf) {
         Devices = new HashMap<>();
         Configuration=Conf;
-        
-        NotWork=(OS.indexOf("win") >= 0);
-        
-        if (NotWork)
-            return;
-        
-       // try {
-            if (Configuration.BusID==1)
-            {
-              //  BusI2C= I2CFactory.getInstance(I2CBus.BUS_1);
-            }
-            else
-            {
-              //  BusI2C= I2CFactory.getInstance(I2CBus.BUS_0);
-            }
-       // } catch (IOException ex) {
-          //  Logger.getLogger(UNIL_RS232Adapter.class.getName()).log(Level.SEVERE, null, ex);
-
-       // }
+    
     }
     public static boolean isWindows() {
         return (OS.indexOf("win") >= 0);

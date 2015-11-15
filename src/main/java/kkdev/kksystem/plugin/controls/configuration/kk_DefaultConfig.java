@@ -23,12 +23,13 @@ public abstract class kk_DefaultConfig {
         
         ControlsConfig DefConf = new ControlsConfig();
         
-        DefConf.Adapters=new Adapter[3];
+        DefConf.Adapters=new Adapter[4];
         
         DefConf.Adapters[0] = new Adapter();
         DefConf.Adapters[0].ID="KK_RPI_Adapter";
         DefConf.Adapters[0].Name="Raspberry";
         DefConf.Adapters[0].Type=AdapterType.RaspberryPI_B;
+        
         DefConf.Adapters[1] = new Adapter();
         DefConf.Adapters[1].ID="DBG_Adapter";
         DefConf.Adapters[1].Name="Debug";
@@ -40,6 +41,14 @@ public abstract class kk_DefaultConfig {
         DefConf.Adapters[2].Type=AdapterType.RaspberryPI_B_PI4J_I2C;
         DefConf.Adapters[2].BusID=1;
         DefConf.Adapters[2].DeviceID=0x2b;
+        //
+         //
+        DefConf.Adapters[3] = new Adapter();
+        DefConf.Adapters[3].ID="UNI_COM";
+        DefConf.Adapters[3].Name="COM_Buttons";
+        DefConf.Adapters[3].Type=AdapterType.UniversalLinux_RS232;
+        DefConf.Adapters[3].BusID=1;
+        DefConf.Adapters[3].DeviceID=0x2b;
         //
         // 
         DefConf.Controls=new Control[28];
@@ -124,7 +133,7 @@ public abstract class kk_DefaultConfig {
         
         for (int i=4;i<4+24;i++)
         {
-             DefConf.Controls[i].AdapterID="RPI_I2C";
+             DefConf.Controls[i].AdapterID="UNI_COM";
         }
         
         DefConf.Controls[0].AdapterSource="3"; //change to your rpi pin numbers

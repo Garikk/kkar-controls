@@ -12,6 +12,7 @@ import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
 import kkdev.kksystem.plugin.controls.adapters.debug.DebugAdapterConsole;
 import kkdev.kksystem.plugin.controls.adapters.rpi.RPIControlAdapter;
 import kkdev.kksystem.plugin.controls.adapters.rpi.RPII2CAdapter;
+import kkdev.kksystem.plugin.controls.adapters.unilinux.UNIL_RS232Adapter;
 import kkdev.kksystem.plugin.controls.configuration.Adapter;
 import kkdev.kksystem.plugin.controls.configuration.Control;
 import kkdev.kksystem.plugin.controls.configuration.ControlsConfig;
@@ -27,13 +28,12 @@ import kkdev.kksystem.plugin.controls.configuration.PluginSettings;
  * @author blinov_is
  */
 public class ControlsManager extends PluginManagerControls {
-    
 
     private final IHWAdapterCallback AdapterCallback;
     HashMap<String, IHWAdapter> HWAdapters;
 
     public ControlsManager() {
-        CurrentFeature="";
+        CurrentFeature = "";
         this.AdapterCallback = new IHWAdapterCallback() {
 
             @Override
@@ -83,7 +83,7 @@ public class ControlsManager extends PluginManagerControls {
         //
         //Only one feature supported by now
         //
-       PluginSettings.InitConfig(PConnector.GlobalConfID,PConnector.PluginInfo.GetPluginInfo().PluginUUID);
+        PluginSettings.InitConfig(PConnector.GlobalConfID, PConnector.PluginInfo.GetPluginInfo().PluginUUID);
         InitAdapters();
     }
 
@@ -94,54 +94,56 @@ public class ControlsManager extends PluginManagerControls {
             if (!HWAdapters.containsKey(CTR.AdapterID)) {
                 HWAdapters.put(CTR.AdapterID, CreateAdapter(CTR.AdapterID));
             }
-           //
-                HWAdapters.get(CTR.AdapterID).RegisterControl(CTR, AdapterCallback);
+            //
+            HWAdapters.get(CTR.AdapterID).RegisterControl(CTR, AdapterCallback);
         }
     }
 
     private IHWAdapter CreateAdapter(String AdapterID) {
         for (Adapter ADP : PluginSettings.MainConfiguration.Adapters) {
             if (ADP.ID.equals(AdapterID)) {
-                if (ADP.Type == ControlsConfig.AdapterType.RaspberryPI_B) {
-                    return new RPIControlAdapter();
-                } else if (ADP.Type == ControlsConfig.AdapterType.Debug) {
-                    return new DebugAdapterConsole();
-                } else if (ADP.Type == ControlsConfig.AdapterType.RaspberryPI_B_PI4J_I2C) {
-                    return new RPII2CAdapter(ADP);
+                if (null != ADP.Type) switch (ADP.Type) {
+                    case RaspberryPI_B: //Base RPI GPIO
+                        return new RPIControlAdapter();
+                    case Debug:         //Debug
+                        return new DebugAdapterConsole();
+                    case RaspberryPI_B_PI4J_I2C: // RPI i2c Bus
+                        return new RPII2CAdapter(ADP);
+                    case UniversalLinux_RS232:   // Universal rs232 bus
+                        return new UNIL_RS232Adapter(ADP);
+                    default:
+                        break;
                 }
             }
         }
         return new DebugAdapterConsole();
     }
 
-    public void PluginStart()
-    {
-        for (String K:HWAdapters.keySet())
-        {
+    public void PluginStart() {
+        for (String K : HWAdapters.keySet()) {
             HWAdapters.get(K).SetActive();
         }
     }
-     public void PluginStop()
-    {
-        for (String K:HWAdapters.keySet())
-        {
+
+    public void PluginStop() {
+        for (String K : HWAdapters.keySet()) {
             HWAdapters.get(K).SetInactive();
         }
     }
-    
+
     public void ReceivePin(String PinName, Object PinData) {
         switch (PinName) {
             case PluginConsts.KK_PLUGIN_BASE_PIN_COMMAND:
                 ProcessBaseCommand((PinBaseCommand) PinData);
         }
-     
+
     }
-      private void ProcessBaseCommand(PinBaseCommand Command) {
+
+    private void ProcessBaseCommand(PinBaseCommand Command) {
         switch (Command.BaseCommand) {
             case CHANGE_FEATURE:
-                if (!CurrentFeature.equals(Command.ChangeFeatureID))
-                {
-                    CurrentFeature=Command.ChangeFeatureID;
+                if (!CurrentFeature.equals(Command.ChangeFeatureID)) {
+                    CurrentFeature = Command.ChangeFeatureID;
                 }
                 break;
             case PLUGIN:
