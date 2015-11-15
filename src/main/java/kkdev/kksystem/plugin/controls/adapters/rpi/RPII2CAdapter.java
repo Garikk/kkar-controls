@@ -27,16 +27,19 @@ public class RPII2CAdapter implements IHWAdapter  {
     I2CBus BusI2C;
     Adapter Configuration;
     boolean NotWork;
+     boolean NotWork2;
 
     private static String OS = System.getProperty("os.name").toLowerCase();
+    private static String ARCH = System.getProperty("os.arch").toLowerCase();
 
       public RPII2CAdapter(Adapter Conf) {
         Devices = new HashMap<>();
         Configuration=Conf;
         
-        NotWork=(OS.indexOf("win") >= 0);
+        NotWork=(OS.contains("win"));
+        NotWork2 =(!ARCH.contains("ARM"));
         
-        if (NotWork)
+        if (NotWork || NotWork2)
             return;
         
         try {
