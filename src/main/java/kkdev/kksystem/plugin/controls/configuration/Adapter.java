@@ -16,4 +16,5 @@ package kkdev.kksystem.plugin.controls.configuration;
          public ControlsConfig.AdapterType Type;
          public int BusID;
          public int DeviceID;
+         public String UNILPort;
      }

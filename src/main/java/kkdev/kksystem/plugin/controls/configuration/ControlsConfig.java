@@ -21,6 +21,7 @@ public class ControlsConfig extends ExternalConfiguration {
         External_TaggedInt,
         RaspberryPI_B,
         RaspberryPI_B_PI4J_I2C,
+        UniversalLinux_RS232,
         Debug
     }
      
