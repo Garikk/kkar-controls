@@ -19,7 +19,7 @@ public class UNIL_RS232Adapter implements IHWAdapter  {
 
     HashMap<String, DevCtrl> Devices;
     Adapter Configuration;
-    boolean NotWork;
+    boolean NotWork=true;
 
     private static String OS = System.getProperty("os.name").toLowerCase();
 
