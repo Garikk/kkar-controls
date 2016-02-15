@@ -9,6 +9,7 @@ import com.pi4j.io.i2c.I2CBus;
 import com.pi4j.io.i2c.I2CDevice;
 import com.pi4j.io.i2c.I2CFactory;
 import java.io.IOException;
+import static java.lang.System.out;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,7 +41,10 @@ public class RPII2CAdapter implements IHWAdapter  {
         NotWork2 =(!ARCH.contains("ARM"));
         
         if (NotWork || NotWork2)
+        {
+             out.println("[HID][ERR] PRII2C Adapter disabled, RPI required");
             return;
+        }
         
         try {
             if (Configuration.BusID==1)
@@ -59,7 +63,7 @@ public class RPII2CAdapter implements IHWAdapter  {
 
     @Override
     public void SetActive() {
-        if (NotWork)
+         if (NotWork || NotWork2)
             StartBusReading();
     }
 
@@ -85,7 +89,7 @@ public class RPII2CAdapter implements IHWAdapter  {
 
     @Override
     public void RegisterControl(Control Ctrl, IHWAdapterCallback Callback) {
-        if (NotWork)
+         if (NotWork || NotWork2)
             return;
             
             RegisterEvent(Ctrl,Callback);
@@ -112,7 +116,7 @@ public class RPII2CAdapter implements IHWAdapter  {
     
     private DevCtrl ConnectI2CDevice(String DeviceID)
     {
-        if (NotWork)
+         if (NotWork || NotWork2)
             return null;
             
         try {
