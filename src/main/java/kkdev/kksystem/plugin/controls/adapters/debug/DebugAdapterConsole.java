@@ -20,39 +20,42 @@ public class DebugAdapterConsole implements IHWAdapter {
 
     IHWAdapterCallback CB;
     Map<String, Control> Controls;
-    boolean Active=false;
-    
-    public DebugAdapterConsole()
-    {
-        Controls=new HashMap<>();
+    boolean Active = false;
+
+    public DebugAdapterConsole() {
+        Controls = new HashMap<>();
     }
-    
-    
+
     @Override
     public void RegisterControl(Control Ctrl, IHWAdapterCallback Callback) {
-       
-        CB=Callback;
-        
+
+        CB = Callback;
+        System.out.println("[HID][DBGA] Reg Control " + Ctrl.Name);
         Controls.put(Ctrl.ID, Ctrl);
 
+    }
+
+    @Override
+    public void SetActive() {
+                System.out.println("[HID][DBGA] Debug Adapter ENABLED");
+        Active = true;
         Thread tmr;
         tmr = new Thread(new Runnable() {
-            public void run() //Этот метод будет выполняться в побочном потоке
-            {
+            public void run() {
                 Boolean Stop = false;
                 String Check;
 
                 while (!Stop) {
-                    if (System.console()==null){
-                        Stop=true;
+                    if (System.console() == null) {
+                        Stop = true;
                         continue;
                     }
-                    
+
                     Check = System.console().readLine();
-                    System.out.println(Check.length());
-                    
+                    System.out.println(Controls.size()+ " " +Controls.get(DEF_BTN_DOWN));
+
                     switch (Check) {
-                         case "1":
+                        case "1":
                             CB.Control_Triggered(Controls.get(DEF_BTN_UP));
                             break;
                         case "2":
@@ -65,26 +68,19 @@ public class DebugAdapterConsole implements IHWAdapter {
                             CB.Control_Triggered(Controls.get(DEF_BTN_BACK));
                             break;
                         case "44":
-                            CB.Control_LongPress(Controls.get(DEF_BTN_BACK),1);
+                            CB.Control_LongPress(Controls.get(DEF_BTN_BACK), 1);
                             break;
                     }
                 }
             }
         });
-        
+
         tmr.start();
     }
 
     @Override
-    public void SetActive() {
+    public void SetInactive() {
         Active = false;
     }
-
-    @Override
-    public void SetInactive() {
-        Active=false;
-    }
-    
-    
 
 }

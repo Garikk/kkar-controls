@@ -171,7 +171,7 @@ public abstract class kk_DefaultConfig {
         DefConf.Controls[0].Global=false;
         DefConf.Controls[1].Global=false;
         DefConf.Controls[2].Global=false;
-        DefConf.Controls[3].Global=true;
+        DefConf.Controls[3].Global=true; //back button is global
         for (int i=4;i<4+24;i++)
         {
             DefConf.Controls[i].Global=false;

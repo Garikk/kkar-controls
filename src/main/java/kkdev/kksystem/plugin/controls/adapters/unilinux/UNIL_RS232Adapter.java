@@ -34,6 +34,7 @@ public class UNIL_RS232Adapter implements IHWAdapter  {
     
     @Override
     public void SetActive() {
+          System.out.println("[HID][DBGA] UNI Linux Control adapter ENABLED");
         if (NotWork)
             StartBusReading();
     }

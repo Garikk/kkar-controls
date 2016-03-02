@@ -64,7 +64,7 @@ public class ControlsManager extends PluginManagerControls {
             public void Control_LongPress(Control Ctrl, int State) {
                 System.out.println("LP");
                 CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
-            }
+            }   
 
             private String GetTargetFeature(Control Ctrl) {
                 if (Ctrl.FixedFeature) {

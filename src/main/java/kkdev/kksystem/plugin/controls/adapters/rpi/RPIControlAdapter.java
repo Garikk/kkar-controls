@@ -30,6 +30,7 @@ public class RPIControlAdapter implements IHWAdapter {
 
     @Override
     public void SetActive() {
+        System.out.println("[HID][DBGA] RPI Control adapter ENABLED");
         //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
