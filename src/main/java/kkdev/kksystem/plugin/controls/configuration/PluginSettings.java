@@ -27,7 +27,6 @@ public abstract class PluginSettings {
         Settings=new SettingsManager(HID_CONF,ControlsConfig.class);
         
         
-        System.out.println("[HID][CONFIG] Load configuration");
         MainConfiguration=(ControlsConfig)Settings.LoadConfig();
 
         if (MainConfiguration == null) {

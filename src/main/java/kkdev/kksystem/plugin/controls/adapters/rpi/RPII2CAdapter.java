@@ -63,7 +63,7 @@ public class RPII2CAdapter implements IHWAdapter  {
 
     @Override
     public void SetActive() {
-          System.out.println("[HID][DBGA] RPI I2C Control adapter ENABLED");
+     //     System.out.println("[HID][DBGA] RPI I2C Control adapter ENABLED");
          if (NotWork || NotWork2)
             StartBusReading();
     }
