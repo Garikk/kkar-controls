@@ -9,6 +9,7 @@ import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_BACK;
 import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_DOWN;
 import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_ENTER;
 import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_UP;
+import kkdev.kksystem.base.constants.SystemConsts;
 import kkdev.kksystem.plugin.controls.configuration.ControlsConfig.AdapterType;
 
 

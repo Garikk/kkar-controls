@@ -6,6 +6,7 @@ import kkdev.kksystem.base.classes.controls.PinControlData;
 import kkdev.kksystem.base.classes.plugins.simple.managers.PluginManagerControls;
 import kkdev.kksystem.base.constants.PluginConsts;
 import static kkdev.kksystem.base.constants.SystemConsts.KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID;
+import static kkdev.kksystem.base.constants.SystemConsts.KK_BASE_UICONTEXT_DEFAULT_MULTI;
 import kkdev.kksystem.plugin.controls.KKPlugin;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
@@ -33,36 +34,35 @@ public class ControlsManager extends PluginManagerControls {
     HashMap<String, IHWAdapter> HWAdapters;
 
     public ControlsManager() {
-        CurrentFeature = "";
+        CurrentFeature = new HashMap<>();
         this.AdapterCallback = new IHWAdapterCallback() {
-
             @Override
             public void Control_Triggered(Control Ctrl) {
 
-                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
+                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl),GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
             }
 
             @Override
             public void Control_SwitchOn(Control Ctrl) {
 
-                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
+                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl),GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
             }
 
             @Override
             public void Control_SwitchOff(Control Ctrl) {
 
-                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
+                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl),GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
             }
 
             @Override
             public void Control_ChangeState(Control Ctrl, int State) {
 
-                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
+                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl),GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
             }
 
             @Override
             public void Control_LongPress(Control Ctrl, int State) {
-                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
+                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl),GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
             }   
 
             private String GetTargetFeature(Control Ctrl) {
@@ -71,7 +71,16 @@ public class ControlsManager extends PluginManagerControls {
                 } else if (Ctrl.Global) {
                     return KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID;
                 } else {
-                    return CurrentFeature;
+                    return CurrentFeature.get(Ctrl.CurrentUIContext);
+                }
+            }
+              private String GetTargetUIContext(Control Ctrl) {
+                if (Ctrl.FixedContext) {
+                    return Ctrl.FixedContextTarget;
+                } else if (Ctrl.Global) {
+                    return KK_BASE_UICONTEXT_DEFAULT_MULTI;
+                } else {
+                    return Ctrl.CurrentUIContext;
                 }
             }
         };
@@ -141,9 +150,13 @@ public class ControlsManager extends PluginManagerControls {
     private void ProcessBaseCommand(PinBaseCommand Command) {
         switch (Command.BaseCommand) {
             case CHANGE_FEATURE:
-                if (!CurrentFeature.equals(Command.ChangeFeatureID)) {
-                    CurrentFeature = Command.ChangeFeatureID;
-                }
+                if (!CurrentFeature.containsKey(Command.ChangeUIContextID))
+                    CurrentFeature.put(Command.ChangeUIContextID, Command.ChangeFeatureID);
+                
+                if (CurrentFeature.get(Command.ChangeUIContextID).equals(Command.ChangeFeatureID))
+                    return;
+                else
+                    CurrentFeature.put(Command.ChangeUIContextID,Command.ChangeFeatureID);
                 break;
             case PLUGIN:
                 break;

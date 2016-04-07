@@ -27,5 +27,6 @@ public class ControlsConfig extends ExternalConfiguration {
      
      public Adapter[] Adapters;
      public Control[] Controls;
+     
     
 }

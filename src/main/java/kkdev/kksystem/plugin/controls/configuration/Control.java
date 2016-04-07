@@ -15,8 +15,13 @@ public class Control {
     public String ID;
     public String AdapterID;
     public String AdapterSource;
+    //
     public boolean Global;
     public boolean FixedFeature;
     public String FixedFeatureTarget;
+    public boolean FixedContext;
+    public String FixedContextTarget;
+    //
+    public String CurrentUIContext;
 
 }
