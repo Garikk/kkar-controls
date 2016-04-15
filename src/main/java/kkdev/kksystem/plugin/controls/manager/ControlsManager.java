@@ -32,13 +32,14 @@ public class ControlsManager extends PluginManagerControls {
 
     private final IHWAdapterCallback AdapterCallback;
     HashMap<String, IHWAdapter> HWAdapters;
+    
+    private String ___CurrentUIContext;
 
     public ControlsManager() {
         CurrentFeature = new HashMap<>();
         this.AdapterCallback = new IHWAdapterCallback() {
             @Override
             public void Control_Triggered(Control Ctrl) {
-
                 CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl),GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
             }
 
@@ -62,6 +63,7 @@ public class ControlsManager extends PluginManagerControls {
 
             @Override
             public void Control_LongPress(Control Ctrl, int State) {
+
                 CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl),GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
             }   
 
@@ -71,7 +73,7 @@ public class ControlsManager extends PluginManagerControls {
                 } else if (Ctrl.Global) {
                     return KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID;
                 } else {
-                    return CurrentFeature.get(Ctrl.CurrentUIContext);
+                    return CurrentFeature.get(___CurrentUIContext);//Ctrl.CurrentUIContext);
                 }
             }
               private String GetTargetUIContext(Control Ctrl) {
@@ -80,7 +82,7 @@ public class ControlsManager extends PluginManagerControls {
                 } else if (Ctrl.Global) {
                     return KK_BASE_UICONTEXT_DEFAULT_MULTI;
                 } else {
-                    return Ctrl.CurrentUIContext;
+                    return ___CurrentUIContext;//Ctrl.CurrentUIContext;
                 }
             }
         };
@@ -150,6 +152,7 @@ public class ControlsManager extends PluginManagerControls {
     private void ProcessBaseCommand(PinBaseCommand Command) {
         switch (Command.BaseCommand) {
             case CHANGE_FEATURE:
+                ___CurrentUIContext=Command.ChangeUIContextID;
                 if (!CurrentFeature.containsKey(Command.ChangeUIContextID))
                     CurrentFeature.put(Command.ChangeUIContextID, Command.ChangeFeatureID);
                 
@@ -162,5 +165,5 @@ public class ControlsManager extends PluginManagerControls {
                 break;
         }
     }
-
+  
 }
