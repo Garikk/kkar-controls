@@ -37,7 +37,7 @@ public class DebugAdapterConsole implements IHWAdapter {
 
     @Override
     public void SetActive() {
-             //   System.out.println("[HID][DBGA] Debug Adapter ENABLED");
+         //       System.out.println("[HID][DBGA] Debug Adapter ENABLED");
         Active = true;
         Thread tmr;
         tmr = new Thread(new Runnable() {
@@ -52,7 +52,7 @@ public class DebugAdapterConsole implements IHWAdapter {
                     }
 
                     Check = System.console().readLine();
-                    //System.out.println(Controls.size()+ " " +Controls.get(DEF_BTN_DOWN));
+                //    System.out.println(Controls.size()+ " " +Controls.get(DEF_BTN_DOWN));
 
                     switch (Check) {
                         case "1":
