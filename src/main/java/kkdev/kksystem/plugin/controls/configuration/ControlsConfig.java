@@ -22,6 +22,7 @@ public class ControlsConfig extends ExternalConfiguration {
         RaspberryPI_B,
         RaspberryPI_B_PI4J_I2C,
         UniversalLinux_RS232,
+        KKSmarthead,
         Debug
     }
      

@@ -13,6 +13,7 @@ import static java.lang.System.out;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import kkdev.kksystem.base.classes.plugins.PluginMessage;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
 import kkdev.kksystem.plugin.controls.configuration.Adapter;
@@ -71,6 +72,11 @@ public class RPII2CAdapter implements IHWAdapter  {
     @Override
     public void SetInactive() {
 
+    }
+
+    @Override
+    public void ReceiveObjPin(PluginMessage PM) {
+        // not used
     }
 
      class DevCtrl {

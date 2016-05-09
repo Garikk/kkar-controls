@@ -13,6 +13,7 @@ import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
 import kkdev.kksystem.plugin.controls.adapters.debug.DebugAdapterConsole;
 import kkdev.kksystem.plugin.controls.adapters.rpi.RPIControlAdapter;
 import kkdev.kksystem.plugin.controls.adapters.rpi.RPII2CAdapter;
+import kkdev.kksystem.plugin.controls.adapters.smarthead.Smarthead;
 import kkdev.kksystem.plugin.controls.adapters.unilinux.UNIL_RS232Adapter;
 import kkdev.kksystem.plugin.controls.configuration.Adapter;
 import kkdev.kksystem.plugin.controls.configuration.Control;
@@ -121,6 +122,8 @@ public class ControlsManager extends PluginManagerControls {
                         return new RPII2CAdapter(ADP);
                     case UniversalLinux_RS232:   // Universal rs232 bus
                         return new UNIL_RS232Adapter(ADP);
+                    case KKSmarthead:   // Smarthead source
+                        return new Smarthead(ADP);
                     default:
                         break;
                 }

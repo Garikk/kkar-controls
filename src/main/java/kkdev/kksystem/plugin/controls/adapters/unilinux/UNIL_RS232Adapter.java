@@ -6,6 +6,7 @@
 package kkdev.kksystem.plugin.controls.adapters.unilinux;
 
 import java.util.HashMap;
+import kkdev.kksystem.base.classes.plugins.PluginMessage;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
 import kkdev.kksystem.plugin.controls.configuration.Adapter;
@@ -42,6 +43,11 @@ public class UNIL_RS232Adapter implements IHWAdapter  {
     @Override
     public void SetInactive() {
 
+    }
+
+    @Override
+    public void ReceiveObjPin(PluginMessage PM) {
+       // not used
     }
 
      class DevCtrl {

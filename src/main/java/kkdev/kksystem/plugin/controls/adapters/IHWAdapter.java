@@ -5,6 +5,7 @@
  */
 package kkdev.kksystem.plugin.controls.adapters;
 
+import kkdev.kksystem.base.classes.plugins.PluginMessage;
 import kkdev.kksystem.plugin.controls.configuration.Control;
 
 /**
@@ -15,4 +16,5 @@ public interface IHWAdapter {
     public void RegisterControl(Control Ctrl,IHWAdapterCallback Callback);
     public void SetActive();
     public void SetInactive();
+    public void ReceiveObjPin(PluginMessage PM);
 }

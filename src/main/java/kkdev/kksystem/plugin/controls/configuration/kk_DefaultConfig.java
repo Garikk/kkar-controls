@@ -51,6 +51,14 @@ public abstract class kk_DefaultConfig {
         DefConf.Adapters[3].BusID=1;
         DefConf.Adapters[3].DeviceID=0x2b;
         //
+               //
+        DefConf.Adapters[3] = new Adapter();
+        DefConf.Adapters[3].ID="SMARTHEAD";
+        DefConf.Adapters[3].Name="SMARTHEAD_Buttons";
+        DefConf.Adapters[3].Type=AdapterType.KKSmarthead;
+        DefConf.Adapters[3].BusID=1;
+        DefConf.Adapters[3].DeviceID=0x2b;
+        //
         // 
         DefConf.Controls=new Control[28];
         // RPI controls, for debug
@@ -134,7 +142,7 @@ public abstract class kk_DefaultConfig {
         
         for (int i=4;i<4+24;i++)
         {
-             DefConf.Controls[i].AdapterID="UNI_COM";
+             DefConf.Controls[i].AdapterID="SMARTHEAD";
         }
         
         DefConf.Controls[0].AdapterSource="3"; //change to your rpi pin numbers
