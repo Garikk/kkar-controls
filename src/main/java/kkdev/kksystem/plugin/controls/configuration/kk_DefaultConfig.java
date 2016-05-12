@@ -56,8 +56,7 @@ public abstract class kk_DefaultConfig {
         DefConf.Adapters[3].ID="SMARTHEAD";
         DefConf.Adapters[3].Name="SMARTHEAD_Buttons";
         DefConf.Adapters[3].Type=AdapterType.KKSmarthead;
-        DefConf.Adapters[3].BusID=1;
-        DefConf.Adapters[3].DeviceID=0x2b;
+        DefConf.Adapters[3].UNILPort="SMARTHEAD";
         //
         // 
         DefConf.Controls=new Control[28];
@@ -79,10 +78,10 @@ public abstract class kk_DefaultConfig {
         DefConf.Controls[3].ID=DEF_BTN_BACK;
         
         // Custom chrysler head REMOVE THIS IN PRODUCTION
-        DefConf.Controls[4].ID="CUSTOM_CHR_SEEKUP";
-        DefConf.Controls[5].ID="CUSTOM_CHR_SEEKDOWN";
-        DefConf.Controls[6].ID="CUSTOM_CHR_AMFM";
-        DefConf.Controls[7].ID="CUSTOM_CHR_SET";
+        DefConf.Controls[4].ID=DEF_BTN_UP;//"CUSTOM_CHR_SEEKUP";
+        DefConf.Controls[5].ID=DEF_BTN_DOWN;//"CUSTOM_CHR_SEEKDOWN";
+        DefConf.Controls[6].ID=DEF_BTN_BACK;//"CUSTOM_CHR_AMFM";
+        DefConf.Controls[7].ID=DEF_BTN_ENTER;//"CUSTOM_CHR_SET";
         DefConf.Controls[8].ID="CUSTOM_CHR_CLOCK_H";
         DefConf.Controls[9].ID="CUSTOM_CHR_CLOCK_M";
         DefConf.Controls[10].ID="CUSTOM_CHR_TUNE_FF";

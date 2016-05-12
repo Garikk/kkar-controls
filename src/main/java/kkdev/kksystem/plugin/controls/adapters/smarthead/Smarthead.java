@@ -60,7 +60,7 @@ public class Smarthead implements IHWAdapter {
 
         ObjDat = (PinBaseDataTaggedObj) PM.PinData;
 
-        if (!ObjDat.Tag.equals("SMARTHEAD")) {
+        if (!ObjDat.Tag.equals(Configuration.UNILPort)) {
             return;
         }
 
