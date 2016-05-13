@@ -24,7 +24,9 @@ import kkdev.kksystem.plugin.controls.configuration.PluginSettings;
 public class Smarthead implements IHWAdapter {
 
     final String SmartheadControlPFX = "$K_CTRL_";
-    final String SmartheadControlEvt_Trig = "EV_FIRE_";
+    final String SmartheadControlEvt_PRESS = "$KPR_";
+    final String SmartheadControlEvt_HOLD = "$KRL_";
+    final String SmartheadControlEvt_RELEASE = "$KRL_";
     IHWAdapterCallback CB;
     Map<String, Control> Controls;
     boolean Active = false;
@@ -39,8 +41,8 @@ public class Smarthead implements IHWAdapter {
     public void RegisterControl(Control Ctrl, IHWAdapterCallback Callback) {
 
         CB = Callback;
-        Controls.put(Ctrl.ID, Ctrl);
-
+        Controls.put(Ctrl.AdapterSource, Ctrl);
+       
     }
 
     @Override
@@ -55,15 +57,11 @@ public class Smarthead implements IHWAdapter {
     }
 
     @Override
-    public void ReceiveObjPin(PluginMessage PM) {
-        PinBaseDataTaggedObj ObjDat;
-
-        ObjDat = (PinBaseDataTaggedObj) PM.PinData;
-
+    public void ReceiveObjPin(PinBaseDataTaggedObj ObjDat) {
+        
         if (!ObjDat.Tag.equals(Configuration.UNILPort)) {
             return;
         }
-
         CheckControl((String) ObjDat.Value);
 
     }
@@ -75,8 +73,9 @@ public class Smarthead implements IHWAdapter {
 
         SmartheadString = SmartheadString.substring(SmartheadControlPFX.length());
         //
-        if (SmartheadString.startsWith(SmartheadControlEvt_Trig)) {
-            SmartheadString = SmartheadString.substring(SmartheadControlEvt_Trig.length());
+
+        if (SmartheadString.startsWith(SmartheadControlEvt_PRESS)) {
+            SmartheadString = SmartheadString.substring(SmartheadControlEvt_PRESS.length());
             if (Controls.containsKey(SmartheadString)) {
                 CB.Control_Triggered(Controls.get(SmartheadString));
             }

@@ -2,6 +2,7 @@ package kkdev.kksystem.plugin.controls.manager;
 
 import java.util.HashMap;
 import kkdev.kksystem.base.classes.base.PinBaseCommand;
+import kkdev.kksystem.base.classes.base.PinBaseDataTaggedObj;
 import kkdev.kksystem.base.classes.controls.PinControlData;
 import kkdev.kksystem.base.classes.plugins.simple.managers.PluginManagerControls;
 import kkdev.kksystem.base.constants.PluginConsts;
@@ -33,6 +34,7 @@ public class ControlsManager extends PluginManagerControls {
 
     private final IHWAdapterCallback AdapterCallback;
     HashMap<String, IHWAdapter> HWAdapters;
+    IHWAdapter SmartheadAdapter;
     
     private String ___CurrentUIContext;
 
@@ -123,7 +125,8 @@ public class ControlsManager extends PluginManagerControls {
                     case UniversalLinux_RS232:   // Universal rs232 bus
                         return new UNIL_RS232Adapter(ADP);
                     case KKSmarthead:   // Smarthead source
-                        return new Smarthead(ADP);
+                        SmartheadAdapter=new Smarthead(ADP);
+                        return SmartheadAdapter;
                     default:
                         break;
                 }
@@ -148,10 +151,22 @@ public class ControlsManager extends PluginManagerControls {
         switch (PinName) {
             case PluginConsts.KK_PLUGIN_BASE_PIN_COMMAND:
                 ProcessBaseCommand((PinBaseCommand) PinData);
+                break;
+            case PluginConsts.KK_PLUGIN_BASE_BASIC_TAGGEDOBJ_DATA:
+                ProcessObjPinData((PinBaseDataTaggedObj)PinData);
+                break;
         }
 
     }
 
+    private void ProcessObjPinData(PinBaseDataTaggedObj Obj)
+    {
+        if (Obj.Tag.equals("SMARTHEAD"))
+        {
+            if (SmartheadAdapter!=null)
+                SmartheadAdapter.ReceiveObjPin(Obj);
+        }
+    }
     private void ProcessBaseCommand(PinBaseCommand Command) {
         switch (Command.BaseCommand) {
             case CHANGE_FEATURE:
