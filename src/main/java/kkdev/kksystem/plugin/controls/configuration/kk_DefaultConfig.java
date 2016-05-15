@@ -113,7 +113,7 @@ public abstract class kk_DefaultConfig {
         DefConf.Controls[5].Name="CUSTOM_CHR_SEEKDOWN";
         DefConf.Controls[6].Name="CUSTOM_CHR_AMFM";
         DefConf.Controls[7].Name="CUSTOM_CHR_SET";
-        DefConf.Controls[8].Name="CUSTOM_CHR_CLOCK_H";
+        DefConf.Controls[8].Name="F";
         DefConf.Controls[9].Name="CUSTOM_CHR_CLOCK_M";
         DefConf.Controls[10].Name="CUSTOM_CHR_TUNE_FF";
         DefConf.Controls[11].Name="CUSTOM_CHR_TUNE_RW";
@@ -180,6 +180,7 @@ public abstract class kk_DefaultConfig {
         DefConf.Controls[1].Global=false;
         DefConf.Controls[2].Global=false;
         DefConf.Controls[3].Global=true; //back button is global
+        DefConf.Controls[8].Global=true; //F button is global for test
       
         for (int i=4;i<4+24;i++)
         {
