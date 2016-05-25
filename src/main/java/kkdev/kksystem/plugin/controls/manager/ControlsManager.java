@@ -35,7 +35,7 @@ public class ControlsManager extends PluginManagerControls {
     private final IHWAdapterCallback AdapterCallback;
     HashMap<String, IHWAdapter> HWAdapters;
     IHWAdapter SmartheadAdapter;
-    
+
     private String ___CurrentUIContext;
 
     public ControlsManager() {
@@ -43,47 +43,72 @@ public class ControlsManager extends PluginManagerControls {
         this.AdapterCallback = new IHWAdapterCallback() {
             @Override
             public void Control_Triggered(Control Ctrl) {
-                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl),GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
+                String[] Target = GetTargetFeature(Ctrl);
+
+                for (String TR : Target) {
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
+                }
             }
 
             @Override
             public void Control_SwitchOn(Control Ctrl) {
+                String[] Target = GetTargetFeature(Ctrl);
 
-                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl),GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
+                for (String TR : Target) {
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
+                }
             }
 
             @Override
             public void Control_SwitchOff(Control Ctrl) {
+                String[] Target = GetTargetFeature(Ctrl);
 
-                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl),GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
+                for (String TR : Target) {
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
+                }
             }
 
             @Override
             public void Control_ChangeState(Control Ctrl, int State) {
+                String[] Target = GetTargetFeature(Ctrl);
 
-                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl),GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
+                for (String TR : Target) {
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
+                }
             }
 
             @Override
             public void Control_LongPress(Control Ctrl, int State) {
+                String[] Target = GetTargetFeature(Ctrl);
 
-                CONTROL_SendPluginMessageData(GetTargetFeature(Ctrl),GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
-            }   
-
-            private String GetTargetFeature(Control Ctrl) {
-                if (Ctrl.FixedFeature) {
-                    return Ctrl.FixedFeatureTarget;
-                } else if (Ctrl.Global) {
-                    return KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID;
-                } else {
-                    return CurrentFeature.get(___CurrentUIContext);//Ctrl.CurrentUIContext);
+                for (String TR : Target) {
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
                 }
             }
-              private String GetTargetUIContext(Control Ctrl) {
+
+            private String[] GetTargetFeature(Control Ctrl) {
+                String Ret[];
+
+                if (Ctrl.FixedFeature) {
+                    Ret = new String[1];
+                    Ret[0] = Ctrl.FixedFeatureTarget;
+                } else if (Ctrl.Global) {
+                    Ret = new String[2];
+                    Ret[0] = KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID;
+                    Ret[1] = CurrentFeature.get(___CurrentUIContext);
+                } else {
+                    Ret = new String[1];
+                    Ret[0] = CurrentFeature.get(___CurrentUIContext);
+                }
+
+                return Ret;
+            }
+
+            private String GetTargetUIContext(Control Ctrl) {
                 if (Ctrl.FixedContext) {
                     return Ctrl.FixedContextTarget;
-                } else if (Ctrl.Global) {
-                    return KK_BASE_UICONTEXT_DEFAULT_MULTI;
+               // } else if (Ctrl.Global) {
+                //    return KK_BASE_UICONTEXT_DEFAULT_MULTI;
                 } else {
                     return ___CurrentUIContext;//Ctrl.CurrentUIContext;
                 }
@@ -115,20 +140,22 @@ public class ControlsManager extends PluginManagerControls {
     private IHWAdapter CreateAdapter(String AdapterID) {
         for (Adapter ADP : PluginSettings.MainConfiguration.Adapters) {
             if (ADP.ID.equals(AdapterID)) {
-                if (null != ADP.Type) switch (ADP.Type) {
-                    case RaspberryPI_B: //Base RPI GPIO
-                        return new RPIControlAdapter();
-                    case Debug:         //Debug
-                        return new DebugAdapterConsole();
-                    case RaspberryPI_B_PI4J_I2C: // RPI i2c Bus
-                        return new RPII2CAdapter(ADP);
-                    case UniversalLinux_RS232:   // Universal rs232 bus
-                        return new UNIL_RS232Adapter(ADP);
-                    case KKSmarthead:   // Smarthead source
-                        SmartheadAdapter=new Smarthead(ADP);
-                        return SmartheadAdapter;
-                    default:
-                        break;
+                if (null != ADP.Type) {
+                    switch (ADP.Type) {
+                        case RaspberryPI_B: //Base RPI GPIO
+                            return new RPIControlAdapter();
+                        case Debug:         //Debug
+                            return new DebugAdapterConsole();
+                        case RaspberryPI_B_PI4J_I2C: // RPI i2c Bus
+                            return new RPII2CAdapter(ADP);
+                        case UniversalLinux_RS232:   // Universal rs232 bus
+                            return new UNIL_RS232Adapter(ADP);
+                        case KKSmarthead:   // Smarthead source
+                            SmartheadAdapter = new Smarthead(ADP);
+                            return SmartheadAdapter;
+                        default:
+                            break;
+                    }
                 }
             }
         }
@@ -153,35 +180,37 @@ public class ControlsManager extends PluginManagerControls {
                 ProcessBaseCommand((PinBaseCommand) PinData);
                 break;
             case PluginConsts.KK_PLUGIN_BASE_BASIC_TAGGEDOBJ_DATA:
-                ProcessObjPinData((PinBaseDataTaggedObj)PinData);
+                ProcessObjPinData((PinBaseDataTaggedObj) PinData);
                 break;
         }
 
     }
 
-    private void ProcessObjPinData(PinBaseDataTaggedObj Obj)
-    {
-        if (Obj.Tag.equals("SMARTHEAD"))
-        {
-            if (SmartheadAdapter!=null)
+    private void ProcessObjPinData(PinBaseDataTaggedObj Obj) {
+        if (Obj.Tag.equals("SMARTHEAD")) {
+            if (SmartheadAdapter != null) {
                 SmartheadAdapter.ReceiveObjPin(Obj);
+            }
         }
     }
+
     private void ProcessBaseCommand(PinBaseCommand Command) {
         switch (Command.BaseCommand) {
             case CHANGE_FEATURE:
-                ___CurrentUIContext=Command.ChangeUIContextID;
-                if (!CurrentFeature.containsKey(Command.ChangeUIContextID))
+                ___CurrentUIContext = Command.ChangeUIContextID;
+                if (!CurrentFeature.containsKey(Command.ChangeUIContextID)) {
                     CurrentFeature.put(Command.ChangeUIContextID, Command.ChangeFeatureID);
-                
-                if (CurrentFeature.get(Command.ChangeUIContextID).equals(Command.ChangeFeatureID))
+                }
+
+                if (CurrentFeature.get(Command.ChangeUIContextID).equals(Command.ChangeFeatureID)) {
                     return;
-                else
-                    CurrentFeature.put(Command.ChangeUIContextID,Command.ChangeFeatureID);
+                } else {
+                    CurrentFeature.put(Command.ChangeUIContextID, Command.ChangeFeatureID);
+                }
                 break;
             case PLUGIN:
                 break;
         }
     }
-  
+
 }
