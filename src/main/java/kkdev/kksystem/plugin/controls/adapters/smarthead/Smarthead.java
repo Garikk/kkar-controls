@@ -55,10 +55,10 @@ public class Smarthead implements IHWAdapter {
     @Override
     public void ReceiveObjPin(PinBaseDataTaggedObj ObjDat) {
         
-        if (!ObjDat.Tag.equals(Configuration.UNILPort)) {
+        if (!ObjDat.tag.equals(Configuration.UNILPort)) {
             return;
         }
-        CheckControl((String) ObjDat.Value);
+        CheckControl((String) ObjDat.value);
 
     }
 

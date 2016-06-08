@@ -27,12 +27,12 @@ public abstract class PluginSettings {
         Settings=new SettingsManager(HID_CONF,ControlsConfig.class);
         
         
-        MainConfiguration=(ControlsConfig)Settings.LoadConfig();
+        MainConfiguration=(ControlsConfig)Settings.loadConfig();
 
         if (MainConfiguration == null) {
             System.out.println("[HID][CONFIG] Error Load configuration, try create default config");
-            Settings.SaveConfig(kk_DefaultConfig.MakeDefaultConfig());
-            MainConfiguration=(ControlsConfig)Settings.LoadConfig();
+            Settings.saveConfig(kk_DefaultConfig.MakeDefaultConfig());
+            MainConfiguration=(ControlsConfig)Settings.loadConfig();
         }
         if (MainConfiguration == null) {
             System.out.println("[HID][CONFIG] Load configuration, fatal");

@@ -39,7 +39,7 @@ public class ControlsManager extends PluginManagerControls {
     private String ___CurrentUIContext;
 
     public ControlsManager() {
-        CurrentFeature = new HashMap<>();
+        currentFeature = new HashMap<>();
         this.AdapterCallback = new IHWAdapterCallback() {
             @Override
             public void Control_Triggered(Control Ctrl) {
@@ -95,10 +95,10 @@ public class ControlsManager extends PluginManagerControls {
                 } else if (Ctrl.Global) {
                     Ret = new String[2];
                     Ret[0] = KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID;
-                    Ret[1] = CurrentFeature.get(___CurrentUIContext);
+                    Ret[1] = currentFeature.get(___CurrentUIContext);
                 } else {
                     Ret = new String[1];
-                    Ret[0] = CurrentFeature.get(___CurrentUIContext);
+                    Ret[0] = currentFeature.get(___CurrentUIContext);
                 }
 
                 return Ret;
@@ -117,11 +117,11 @@ public class ControlsManager extends PluginManagerControls {
     }
 
     public void InitControls(KKPlugin PConnector) {
-        Connector = PConnector;
+        connector = PConnector;
         //
         //Only one feature supported by now
         //
-        PluginSettings.InitConfig(PConnector.GlobalConfID, PConnector.PluginInfo.GetPluginInfo().PluginUUID);
+        PluginSettings.InitConfig(PConnector.globalConfID, PConnector.pluginInfo.getPluginInfo().PluginUUID);
         InitAdapters();
     }
 
@@ -187,7 +187,7 @@ public class ControlsManager extends PluginManagerControls {
     }
 
     private void ProcessObjPinData(PinBaseDataTaggedObj Obj) {
-        if (Obj.Tag.equals("SMARTHEAD")) {
+        if (Obj.tag.equals("SMARTHEAD")) {
             if (SmartheadAdapter != null) {
                 SmartheadAdapter.ReceiveObjPin(Obj);
             }
@@ -195,17 +195,17 @@ public class ControlsManager extends PluginManagerControls {
     }
 
     private void ProcessBaseCommand(PinBaseCommand Command) {
-        switch (Command.BaseCommand) {
+        switch (Command.baseCommand) {
             case CHANGE_FEATURE:
-                ___CurrentUIContext = Command.ChangeUIContextID;
-                if (!CurrentFeature.containsKey(Command.ChangeUIContextID)) {
-                    CurrentFeature.put(Command.ChangeUIContextID, Command.ChangeFeatureID);
+                ___CurrentUIContext = Command.changeUIContextID;
+                if (!currentFeature.containsKey(Command.changeUIContextID)) {
+                    currentFeature.put(Command.changeUIContextID, Command.changeFeatureID);
                 }
 
-                if (CurrentFeature.get(Command.ChangeUIContextID).equals(Command.ChangeFeatureID)) {
+                if (currentFeature.get(Command.changeUIContextID).equals(Command.changeFeatureID)) {
                     return;
                 } else {
-                    CurrentFeature.put(Command.ChangeUIContextID, Command.ChangeFeatureID);
+                    currentFeature.put(Command.changeUIContextID, Command.changeFeatureID);
                 }
                 break;
             case PLUGIN:

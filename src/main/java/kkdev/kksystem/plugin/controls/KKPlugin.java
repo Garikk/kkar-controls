@@ -23,24 +23,24 @@ public final class KKPlugin extends KKPluginBase {
     }
 
     @Override
-    public void PluginInit(IPluginBaseInterface BaseConnector, String GlobalConfUID) {
-        super.PluginInit(BaseConnector, GlobalConfUID); //To change body of generated methods, choose Tools | Templates.
+    public void pluginInit(IPluginBaseInterface BaseConnector, String GlobalConfUID) {
+        super.pluginInit(BaseConnector, GlobalConfUID); //To change body of generated methods, choose Tools | Templates.
          Global.PM.InitControls(this);
     }
 
    
     @Override
-    public PluginMessage ExecutePin(PluginMessage Pin) {
-        super.ExecutePin(Pin);
+    public PluginMessage executePin(PluginMessage Pin) {
+        super.executePin(Pin);
        Global.PM.ReceivePin(Pin.PinName, Pin.PinData);
         return null;
     }
      @Override
-    public void PluginStart() {
+    public void pluginStart() {
       Global.PM.PluginStart();
     }
      @Override
-    public void PluginStop() {
+    public void pluginStop() {
       Global.PM.PluginStop();
     }
 }
