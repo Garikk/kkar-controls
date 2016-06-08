@@ -5,6 +5,8 @@
  */
 package kkdev.kksystem.plugin.controls.configuration;
 
+import java.util.HashSet;
+import java.util.Set;
 import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_BACK;
 import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_DOWN;
 import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_ENTER;
@@ -71,37 +73,50 @@ public abstract class kk_DefaultConfig {
         {
             DefConf.Controls[i] = new Control();
         }
-        //RPI
-        DefConf.Controls[0].ID=DEF_BTN_UP;
-        DefConf.Controls[1].ID=DEF_BTN_DOWN;
-        DefConf.Controls[2].ID=DEF_BTN_ENTER;
-        DefConf.Controls[3].ID=DEF_BTN_BACK;
+        for (int i=0;i<DefConf.Controls.length;i++)
+        {
+            DefConf.Controls[i].buttonID=new HashSet<>();
+        }
+        //RPI, debug pri gpio buttons
+        DefConf.Controls[0].buttonID.add(DEF_BTN_UP);
+        DefConf.Controls[1].buttonID.add(DEF_BTN_DOWN);
+        DefConf.Controls[2].buttonID.add(DEF_BTN_ENTER);
+        DefConf.Controls[3].buttonID.add(DEF_BTN_BACK);
         
         // Custom chrysler head REMOVE THIS IN PRODUCTION
-        DefConf.Controls[4].ID="DUMMY1";
-        DefConf.Controls[5].ID="DUMMY2";
-        DefConf.Controls[6].ID=DEF_BTN_BACK;
-        DefConf.Controls[7].ID=DEF_BTN_ENTER;
-        DefConf.Controls[8].ID="CUSTOM_CHR_CLOCK_H";
-        DefConf.Controls[9].ID="CUSTOM_CHR_CLOCK_M";
-        DefConf.Controls[10].ID="CUSTOM_CHR_TUNE_FF";
-        DefConf.Controls[11].ID="CUSTOM_CHR_TUNE_RW";
-        DefConf.Controls[12].ID="CUSTOM_CHR_TRK_1";
-        DefConf.Controls[13].ID=DEF_BTN_BACK;
-        DefConf.Controls[14].ID=DEF_BTN_UP;
-        DefConf.Controls[15].ID=DEF_BTN_DOWN;
-        DefConf.Controls[16].ID="CUSTOM_CHR_TRK_5";
-        DefConf.Controls[17].ID="CUSTOM_CHR_CLOCK_TIME";
-        DefConf.Controls[18].ID="CUSTOM_CHR_MODE";
-        DefConf.Controls[19].ID=DEF_BTN_ENTER;
-        DefConf.Controls[20].ID="CUSTOM_CHR_POWER";
-        DefConf.Controls[21].ID="CUSTOM_CHR_VOLUME";
-        DefConf.Controls[22].ID="CUSTOM_CHR_BAL_L";
-        DefConf.Controls[23].ID="CUSTOM_CHR_BAL_R";
-        DefConf.Controls[24].ID="CUSTOM_CHR_FADER_L";
-        DefConf.Controls[25].ID="CUSTOM_CHR_FADER_R";
-        DefConf.Controls[26].ID="CUSTOM_CHR_BASS";
-        DefConf.Controls[27].ID="CUSTOM_CHR_TREBLE";
+        DefConf.Controls[4].buttonID.add("DUMMY1");
+        DefConf.Controls[5].buttonID.add("DUMMY2");
+        
+        DefConf.Controls[6].buttonID.add(DEF_BTN_BACK);
+        DefConf.Controls[6].buttonID.add("CUSTOM_CHRY_BTN_SET");
+        
+        DefConf.Controls[7].buttonID.add(DEF_BTN_ENTER);
+        DefConf.Controls[7].buttonID.add("CUSTOM_CHRY_BTN_AMFM");
+        
+        DefConf.Controls[8].buttonID.add("CUSTOM_CHRY_CLOCK_H");
+        DefConf.Controls[9].buttonID.add("CUSTOM_CHRY_CLOCK_M");
+        DefConf.Controls[10].buttonID.add("CUSTOM_CHRY_TUNE_FF");
+        DefConf.Controls[11].buttonID.add("CUSTOM_CHRY_TUNE_RW");
+        DefConf.Controls[12].buttonID.add("CUSTOM_CHRY_TRK_1");
+        DefConf.Controls[13].buttonID.add(DEF_BTN_BACK);
+        
+        DefConf.Controls[14].buttonID.add(DEF_BTN_UP);
+        DefConf.Controls[14].buttonID.add("CUSTOM_CHRY_BTN_SEEKUP");
+        
+        DefConf.Controls[15].buttonID.add(DEF_BTN_DOWN);
+        DefConf.Controls[15].buttonID.add("CUSTOM_CHRY_BTN_SEEKDOWN");
+        DefConf.Controls[16].buttonID.add("CUSTOM_CHRY_TRK_5");
+        DefConf.Controls[17].buttonID.add("CUSTOM_CHRY_CLOCK_TIME");
+        DefConf.Controls[18].buttonID.add("CUSTOM_CHRY_MODE");
+        DefConf.Controls[19].buttonID.add(DEF_BTN_ENTER);
+        DefConf.Controls[20].buttonID.add("CUSTOM_CHRY_POWER");
+        DefConf.Controls[21].buttonID.add("CUSTOM_CHRY_VOLUME");
+        DefConf.Controls[22].buttonID.add("CUSTOM_CHRY_BAL_L");
+        DefConf.Controls[23].buttonID.add("CUSTOM_CHRY_BAL_R");
+        DefConf.Controls[24].buttonID.add("CUSTOM_CHRY_FADER_L");
+        DefConf.Controls[25].buttonID.add("CUSTOM_CHRY_FADER_R");
+        DefConf.Controls[26].buttonID.add("CUSTOM_CHRY_BASS");
+        DefConf.Controls[27].buttonID.add("CUSTOM_CHRY_TREBLE");
 
         
         DefConf.Controls[0].Name="SelectUP";
@@ -109,30 +124,30 @@ public abstract class kk_DefaultConfig {
         DefConf.Controls[2].Name="Enter";
         DefConf.Controls[3].Name="Back";
         
-        DefConf.Controls[4].Name="CUSTOM_CHR_SEEKUP";
-        DefConf.Controls[5].Name="CUSTOM_CHR_SEEKDOWN";
-        DefConf.Controls[6].Name="CUSTOM_CHR_AMFM";
-        DefConf.Controls[7].Name="CUSTOM_CHR_SET";
+        DefConf.Controls[4].Name="CUSTOM_CHRY_SEEKUP";
+        DefConf.Controls[5].Name="CUSTOM_CHRY_SEEKDOWN";
+        DefConf.Controls[6].Name="CUSTOM_CHRY_AMFM";
+        DefConf.Controls[7].Name="CUSTOM_CHRY_SET";
         DefConf.Controls[8].Name="F";
-        DefConf.Controls[9].Name="CUSTOM_CHR_CLOCK_M";
-        DefConf.Controls[10].Name="CUSTOM_CHR_TUNE_FF";
-        DefConf.Controls[11].Name="CUSTOM_CHR_TUNE_RW";
-        DefConf.Controls[12].Name="CUSTOM_CHR_TRK_1";
-        DefConf.Controls[13].Name="CUSTOM_CHR_TRK_2";
-        DefConf.Controls[14].Name="CUSTOM_CHR_TRK_3";
-        DefConf.Controls[15].Name="CUSTOM_CHR_TRK_4";
-        DefConf.Controls[16].Name="CUSTOM_CHR_TRK_5";
-        DefConf.Controls[17].Name="CUSTOM_CHR_CLOCK_TIME";
-        DefConf.Controls[18].Name="CUSTOM_CHR_MODE";
-        DefConf.Controls[19].Name="CUSTOM_CHR_EJECT";
-        DefConf.Controls[20].Name="CUSTOM_CHR_POWER";
-        DefConf.Controls[21].Name="CUSTOM_CHR_VOLUME";
-        DefConf.Controls[22].Name="CUSTOM_CHR_BAL_L";
-        DefConf.Controls[23].Name="CUSTOM_CHR_BAL_R";
-        DefConf.Controls[24].Name="CUSTOM_CHR_FADER_L";
-        DefConf.Controls[25].Name="CUSTOM_CHR_FADER_R";
-        DefConf.Controls[26].Name="CUSTOM_CHR_BASS";
-        DefConf.Controls[27].Name="CUSTOM_CHR_TREBLE";
+        DefConf.Controls[9].Name="CUSTOM_CHRY_CLOCK_M";
+        DefConf.Controls[10].Name="CUSTOM_CHRY_TUNE_FF";
+        DefConf.Controls[11].Name="CUSTOM_CHRY_TUNE_RW";
+        DefConf.Controls[12].Name="CUSTOM_CHRY_TRK_1";
+        DefConf.Controls[13].Name="CUSTOM_CHRY_TRK_2";
+        DefConf.Controls[14].Name="CUSTOM_CHRY_TRK_3";
+        DefConf.Controls[15].Name="CUSTOM_CHRY_TRK_4";
+        DefConf.Controls[16].Name="CUSTOM_CHRY_TRK_5";
+        DefConf.Controls[17].Name="CUSTOM_CHRY_CLOCK_TIME";
+        DefConf.Controls[18].Name="CUSTOM_CHRY_MODE";
+        DefConf.Controls[19].Name="CUSTOM_CHRY_EJECT";
+        DefConf.Controls[20].Name="CUSTOM_CHRY_POWER";
+        DefConf.Controls[21].Name="CUSTOM_CHRY_VOLUME";
+        DefConf.Controls[22].Name="CUSTOM_CHRY_BAL_L";
+        DefConf.Controls[23].Name="CUSTOM_CHRY_BAL_R";
+        DefConf.Controls[24].Name="CUSTOM_CHRY_FADER_L";
+        DefConf.Controls[25].Name="CUSTOM_CHRY_FADER_R";
+        DefConf.Controls[26].Name="CUSTOM_CHRY_BASS";
+        DefConf.Controls[27].Name="CUSTOM_CHRY_TREBLE";
         
         DefConf.Controls[0].AdapterID="DBG_Adapter";
         DefConf.Controls[1].AdapterID="DBG_Adapter";

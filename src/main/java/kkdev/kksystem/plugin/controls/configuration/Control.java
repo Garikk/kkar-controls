@@ -5,6 +5,8 @@
  */
 package kkdev.kksystem.plugin.controls.configuration;
 
+import java.util.Set;
+
 /**
  *
  * @author blinov_is
@@ -12,7 +14,7 @@ package kkdev.kksystem.plugin.controls.configuration;
 public class Control {
 
     public String Name;
-    public String ID;
+    public Set<String> buttonID;
     public String AdapterID;
     public String AdapterSource;
     //

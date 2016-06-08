@@ -35,19 +35,19 @@ public class UNIL_RS232Adapter implements IHWAdapter  {
     }
     
     @Override
-    public void SetActive() {
+    public void setActive() {
        //   System.out.println("[HID][DBGA] UNI Linux Control adapter ENABLED");
         if (NotWork)
             StartBusReading();
     }
 
     @Override
-    public void SetInactive() {
+    public void setInactive() {
 
     }
 
     @Override
-    public void ReceiveObjPin(PinBaseDataTaggedObj PM) {
+    public void receiveObjPin(PinBaseDataTaggedObj PM) {
        // not used
     }
 
@@ -65,7 +65,7 @@ public class UNIL_RS232Adapter implements IHWAdapter  {
     }
 
     @Override
-    public void RegisterControl(Control Ctrl, IHWAdapterCallback Callback) {
+    public void registerControl(Control Ctrl, IHWAdapterCallback Callback) {
         if (NotWork)
             return;
             

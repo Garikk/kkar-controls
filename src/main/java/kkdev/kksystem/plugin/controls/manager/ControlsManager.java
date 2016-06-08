@@ -7,7 +7,6 @@ import kkdev.kksystem.base.classes.controls.PinControlData;
 import kkdev.kksystem.base.classes.plugins.simple.managers.PluginManagerControls;
 import kkdev.kksystem.base.constants.PluginConsts;
 import static kkdev.kksystem.base.constants.SystemConsts.KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID;
-import static kkdev.kksystem.base.constants.SystemConsts.KK_BASE_UICONTEXT_DEFAULT_MULTI;
 import kkdev.kksystem.plugin.controls.KKPlugin;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
@@ -18,7 +17,6 @@ import kkdev.kksystem.plugin.controls.adapters.smarthead.Smarthead;
 import kkdev.kksystem.plugin.controls.adapters.unilinux.UNIL_RS232Adapter;
 import kkdev.kksystem.plugin.controls.configuration.Adapter;
 import kkdev.kksystem.plugin.controls.configuration.Control;
-import kkdev.kksystem.plugin.controls.configuration.ControlsConfig;
 import kkdev.kksystem.plugin.controls.configuration.PluginSettings;
 
 /*
@@ -46,7 +44,7 @@ public class ControlsManager extends PluginManagerControls {
                 String[] Target = GetTargetFeature(Ctrl);
 
                 for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinControlData.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
                 }
             }
 
@@ -55,7 +53,7 @@ public class ControlsManager extends PluginManagerControls {
                 String[] Target = GetTargetFeature(Ctrl);
 
                 for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinControlData.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
                 }
             }
 
@@ -64,7 +62,7 @@ public class ControlsManager extends PluginManagerControls {
                 String[] Target = GetTargetFeature(Ctrl);
 
                 for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinControlData.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
                 }
             }
 
@@ -73,7 +71,7 @@ public class ControlsManager extends PluginManagerControls {
                 String[] Target = GetTargetFeature(Ctrl);
 
                 for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinControlData.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
                 }
             }
 
@@ -82,7 +80,7 @@ public class ControlsManager extends PluginManagerControls {
                 String[] Target = GetTargetFeature(Ctrl);
 
                 for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.ID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
                 }
             }
 
@@ -133,7 +131,7 @@ public class ControlsManager extends PluginManagerControls {
                 HWAdapters.put(CTR.AdapterID, CreateAdapter(CTR.AdapterID));
             }
             //
-            HWAdapters.get(CTR.AdapterID).RegisterControl(CTR, AdapterCallback);
+            HWAdapters.get(CTR.AdapterID).registerControl(CTR, AdapterCallback);
         }
     }
 
@@ -164,13 +162,13 @@ public class ControlsManager extends PluginManagerControls {
 
     public void PluginStart() {
         for (String K : HWAdapters.keySet()) {
-            HWAdapters.get(K).SetActive();
+            HWAdapters.get(K).setActive();
         }
     }
 
     public void PluginStop() {
         for (String K : HWAdapters.keySet()) {
-            HWAdapters.get(K).SetInactive();
+            HWAdapters.get(K).setInactive();
         }
     }
 
@@ -189,7 +187,7 @@ public class ControlsManager extends PluginManagerControls {
     private void ProcessObjPinData(PinBaseDataTaggedObj Obj) {
         if (Obj.tag.equals("SMARTHEAD")) {
             if (SmartheadAdapter != null) {
-                SmartheadAdapter.ReceiveObjPin(Obj);
+                SmartheadAdapter.receiveObjPin(Obj);
             }
         }
     }

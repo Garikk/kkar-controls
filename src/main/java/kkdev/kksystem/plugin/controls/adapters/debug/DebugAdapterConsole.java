@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 import kkdev.kksystem.base.classes.base.PinBaseDataTaggedObj;
 import static kkdev.kksystem.base.classes.controls.PinControlData.*;
-import kkdev.kksystem.base.classes.plugins.PluginMessage;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
 import kkdev.kksystem.plugin.controls.configuration.Control;
@@ -29,16 +28,19 @@ public class DebugAdapterConsole implements IHWAdapter {
     }
 
     @Override
-    public void RegisterControl(Control Ctrl, IHWAdapterCallback Callback) {
+    public void registerControl(Control Ctrl, IHWAdapterCallback Callback) {
 
         CB = Callback;
       //  System.out.println("[HID][DBGA] Reg Control " + Ctrl.Name);
-        Controls.put(Ctrl.ID, Ctrl);
+      for (String btnID:Ctrl.buttonID)
+      {
+          Controls.put(btnID, Ctrl);
+      }
 
     }
 
     @Override
-    public void SetActive() {
+    public void setActive() {
          //       System.out.println("[HID][DBGA] Debug Adapter ENABLED");
         Active = true;
         Thread tmr;
@@ -81,12 +83,12 @@ public class DebugAdapterConsole implements IHWAdapter {
     }
 
     @Override
-    public void SetInactive() {
+    public void setInactive() {
         Active = false;
     }
 
     @Override
-    public void ReceiveObjPin(PinBaseDataTaggedObj PM) {
+    public void receiveObjPin(PinBaseDataTaggedObj PM) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

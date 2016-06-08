@@ -16,7 +16,6 @@ import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import java.util.HashMap;
 import kkdev.kksystem.base.classes.base.PinBaseDataTaggedObj;
-import kkdev.kksystem.base.classes.plugins.PluginMessage;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
 import kkdev.kksystem.plugin.controls.configuration.Control;
@@ -31,18 +30,18 @@ public class RPIControlAdapter implements IHWAdapter {
     final GpioController gpio = GpioFactory.getInstance();
 
     @Override
-    public void SetActive() {
+    public void setActive() {
     //    System.out.println("[HID][DBGA] RPI Control adapter ENABLED");
         //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void SetInactive() {
+    public void setInactive() {
         //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void ReceiveObjPin(PinBaseDataTaggedObj PM) {
+    public void receiveObjPin(PinBaseDataTaggedObj PM) {
        // not used
     }
 
@@ -58,7 +57,7 @@ public class RPIControlAdapter implements IHWAdapter {
     }
 
     @Override
-    public void RegisterControl(Control Ctrl, IHWAdapterCallback Callback) {
+    public void registerControl(Control Ctrl, IHWAdapterCallback Callback) {
 
         ACtrl Add = new ACtrl();
         Add.Callback = Callback;
@@ -66,9 +65,12 @@ public class RPIControlAdapter implements IHWAdapter {
         Add.HWInput=gpio.provisionDigitalInputPin(GetRASPPin(Ctrl.AdapterSource), 
                                                   PinPullResistance.PULL_DOWN);
         Add.HWInput.addListener(GPIOListener);
-        Add.HWInput.setTag(Ctrl.ID);
+        Add.HWInput.setTag(Ctrl.buttonID);
 
-        Controls.put(Ctrl.ID, Add);
+        for (String btnID:Ctrl.buttonID)
+        {
+            Controls.put(btnID, Add);
+        }
         RegisterEvent(Ctrl.AdapterSource, Ctrl.AdapterSource);
     }
     private GpioPinListenerDigital GPIOListener = new GpioPinListenerDigital() {

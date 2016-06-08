@@ -14,8 +14,8 @@ import kkdev.kksystem.plugin.controls.configuration.Control;
  * @author blinov_is
  */
 public interface IHWAdapter {
-    public void RegisterControl(Control Ctrl,IHWAdapterCallback Callback);
-    public void SetActive();
-    public void SetInactive();
-    public void ReceiveObjPin(PinBaseDataTaggedObj PM);
+    public void registerControl(Control Ctrl,IHWAdapterCallback Callback);
+    public void setActive();
+    public void setInactive();
+    public void receiveObjPin(PinBaseDataTaggedObj PM);
 }

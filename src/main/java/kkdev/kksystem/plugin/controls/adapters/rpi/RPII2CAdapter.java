@@ -64,19 +64,19 @@ public class RPII2CAdapter implements IHWAdapter  {
     }
 
     @Override
-    public void SetActive() {
+    public void setActive() {
      //     System.out.println("[HID][DBGA] RPI I2C Control adapter ENABLED");
          if (NotWork || NotWork2)
             StartBusReading();
     }
 
     @Override
-    public void SetInactive() {
+    public void setInactive() {
 
     }
 
     @Override
-    public void ReceiveObjPin(PinBaseDataTaggedObj PM) {
+    public void receiveObjPin(PinBaseDataTaggedObj PM) {
         // not used
     }
 
@@ -96,7 +96,7 @@ public class RPII2CAdapter implements IHWAdapter  {
     }
 
     @Override
-    public void RegisterControl(Control Ctrl, IHWAdapterCallback Callback) {
+    public void registerControl(Control Ctrl, IHWAdapterCallback Callback) {
          if (NotWork || NotWork2)
             return;
             

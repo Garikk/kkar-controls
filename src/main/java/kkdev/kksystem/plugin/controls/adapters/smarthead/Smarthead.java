@@ -34,7 +34,7 @@ public class Smarthead implements IHWAdapter {
     }
 
     @Override
-    public void RegisterControl(Control Ctrl, IHWAdapterCallback Callback) {
+    public void registerControl(Control Ctrl, IHWAdapterCallback Callback) {
 
         CB = Callback;
         Controls.put(Ctrl.AdapterSource, Ctrl);
@@ -42,18 +42,18 @@ public class Smarthead implements IHWAdapter {
     }
 
     @Override
-    public void SetActive() {
+    public void setActive() {
         Active = true;
 
     }
 
     @Override
-    public void SetInactive() {
+    public void setInactive() {
         Active = false;
     }
 
     @Override
-    public void ReceiveObjPin(PinBaseDataTaggedObj ObjDat) {
+    public void receiveObjPin(PinBaseDataTaggedObj ObjDat) {
         
         if (!ObjDat.tag.equals(Configuration.UNILPort)) {
             return;
