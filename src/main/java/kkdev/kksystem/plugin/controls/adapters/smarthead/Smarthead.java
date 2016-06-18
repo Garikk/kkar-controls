@@ -72,6 +72,7 @@ public class Smarthead implements IHWAdapter {
 
         if (SmartheadString.startsWith(SmartheadControlEvt_PRESS)) {
             SmartheadString = SmartheadString.substring(SmartheadControlEvt_PRESS.length());
+            //System.out.println("[HEAD][BTN] "+SmartheadString);
             if (Controls.containsKey(SmartheadString)) {
                 CB.Control_Triggered(Controls.get(SmartheadString));
             }
