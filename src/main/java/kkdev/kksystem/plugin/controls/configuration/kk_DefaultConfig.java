@@ -6,12 +6,7 @@
 package kkdev.kksystem.plugin.controls.configuration;
 
 import java.util.HashSet;
-import java.util.Set;
-import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_BACK;
-import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_DOWN;
-import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_ENTER;
-import static kkdev.kksystem.base.classes.controls.PinControlData.DEF_BTN_UP;
-import kkdev.kksystem.base.constants.SystemConsts;
+import static kkdev.kksystem.base.classes.controls.PinControlData.*;
 import kkdev.kksystem.plugin.controls.configuration.ControlsConfig.AdapterType;
 
 
@@ -69,7 +64,7 @@ public abstract class kk_DefaultConfig {
         DefConf.Controls[3] = new Control();
         
         // Custom chrysler head REMOVE THIS IN PRODUCTION
-        for (int i=4;i<4+24;i++)
+        for (int i=4;i<4+23;i++)
         {
             DefConf.Controls[i] = new Control();
         }
@@ -119,12 +114,14 @@ public abstract class kk_DefaultConfig {
         DefConf.Controls[10].Name="CUSTOM_CHRY_SEEK_UP";
         DefConf.Controls[10].buttonID.add("CUSTOM_CHRY_SEEK_UP");
         DefConf.Controls[10].buttonID.add(DEF_BTN_UP);
+        DefConf.Controls[10].buttonID.add(DEF_BTN_SEEK_FF);
         DefConf.Controls[10].AdapterSource="U"; 
         
    
         DefConf.Controls[11].Name="CUSTOM_CHRY_SEEK_DOWN";
         DefConf.Controls[11].buttonID.add("CUSTOM_CHRY_SEEK_DOWN");
         DefConf.Controls[11].buttonID.add(DEF_BTN_DOWN);
+        DefConf.Controls[11].buttonID.add(DEF_BTN_SEEK_RW);
         DefConf.Controls[11].AdapterSource="D"; 
         
         
@@ -148,10 +145,12 @@ public abstract class kk_DefaultConfig {
 
         DefConf.Controls[16].Name = "CUSTOM_CHRY_TUNE_FF";
         DefConf.Controls[16].buttonID.add("CUSTOM_CHRY_TUNE_FF");
+        DefConf.Controls[16].buttonID.add(DEF_BTN_NEXT_TRACK);
         DefConf.Controls[16].AdapterSource = "F";
         
         DefConf.Controls[17].Name = "CUSTOM_CHRY_TUNE_RW";
         DefConf.Controls[17].buttonID.add("CUSTOM_CHRY_TUNE_RW");
+        DefConf.Controls[17].buttonID.add(DEF_BTN_PREV_TRACK);
         DefConf.Controls[17].AdapterSource = "R";
 
         DefConf.Controls[18].Name = "CUSTOM_CHRY_MODE";
@@ -160,40 +159,38 @@ public abstract class kk_DefaultConfig {
 
         DefConf.Controls[19].Name = "CUSTOM_CHRY_VOL_UP";
         DefConf.Controls[19].buttonID.add("CUSTOM_CHRY_VOL_UP");
+        DefConf.Controls[19].buttonID.add(DEF_BTN_VOL_INC);
         DefConf.Controls[19].AdapterSource = "VU";
         
-        DefConf.Controls[20].Name = "CUSTOM_CHRY_VOL_UP";
-        DefConf.Controls[20].buttonID.add("CUSTOM_CHRY_VOL_UP");
-        DefConf.Controls[20].AdapterSource = "VU";
+        DefConf.Controls[20].Name = "CUSTOM_CHRY_VOL_DOWN";
+        DefConf.Controls[20].buttonID.add("CUSTOM_CHRY_VOL_DOWN");
+        DefConf.Controls[20].buttonID.add(DEF_BTN_VOL_DEC);
+        DefConf.Controls[20].AdapterSource = "VD";
         
-        DefConf.Controls[21].Name = "CUSTOM_CHRY_VOL_DOWN";
-        DefConf.Controls[21].buttonID.add("CUSTOM_CHRY_VOL_DOWN");
-        DefConf.Controls[21].AdapterSource = "VD";
+        DefConf.Controls[21].Name = "CUSTOM_CHRY_BAL_L";
+        DefConf.Controls[21].buttonID.add("CUSTOM_CHRY_BAL_L");
+        DefConf.Controls[21].AdapterSource = "BL";
         
-        DefConf.Controls[22].Name = "CUSTOM_CHRY_BAL_L";
-        DefConf.Controls[22].buttonID.add("CUSTOM_CHRY_BAL_L");
-        DefConf.Controls[22].AdapterSource = "BL";
-        
-        DefConf.Controls[23].Name = "CUSTOM_CHRY_BAL_R";
-        DefConf.Controls[23].buttonID.add("CUSTOM_CHRY_BAL_R");
-        DefConf.Controls[23].AdapterSource = "BR";
+        DefConf.Controls[22].Name = "CUSTOM_CHRY_BAL_R";
+        DefConf.Controls[22].buttonID.add("CUSTOM_CHRY_BAL_R");
+        DefConf.Controls[22].AdapterSource = "BR";
                 
-        DefConf.Controls[24].Name = "CUSTOM_CHRY_FADE_R";
-        DefConf.Controls[24].buttonID.add("CUSTOM_CHRY_FADE_R");
-        DefConf.Controls[24].AdapterSource = "FR";
+        DefConf.Controls[23].Name = "CUSTOM_CHRY_FADE_R";
+        DefConf.Controls[23].buttonID.add("CUSTOM_CHRY_FADE_R");
+        DefConf.Controls[23].AdapterSource = "FR";
         
-        DefConf.Controls[25].Name = "CUSTOM_CHRY_FADE_L";
-        DefConf.Controls[25].buttonID.add("CUSTOM_CHRY_FADE_L");
-        DefConf.Controls[25].AdapterSource = "FL";
+        DefConf.Controls[24].Name = "CUSTOM_CHRY_FADE_L";
+        DefConf.Controls[24].buttonID.add("CUSTOM_CHRY_FADE_L");
+        DefConf.Controls[24].AdapterSource = "FL";
 
-        DefConf.Controls[26].Name = "CUSTOM_CHRY_BASS";
-        DefConf.Controls[26].buttonID.add("CUSTOM_CHRY_BASS");
-        DefConf.Controls[26].AdapterSource = "BS";
+        DefConf.Controls[25].Name = "CUSTOM_CHRY_BASS";
+        DefConf.Controls[25].buttonID.add("CUSTOM_CHRY_BASS");
+        DefConf.Controls[25].AdapterSource = "BS";
         
         
-        DefConf.Controls[27].Name = "CUSTOM_CHRY_TREB";
-        DefConf.Controls[27].buttonID.add("CUSTOM_CHRY_TREB");
-        DefConf.Controls[27].AdapterSource = "TR";
+        DefConf.Controls[26].Name = "CUSTOM_CHRY_TREB";
+        DefConf.Controls[26].buttonID.add("CUSTOM_CHRY_TREB");
+        DefConf.Controls[26].AdapterSource = "TR";
         
 
         DefConf.Controls[0].AdapterID="DBG_Adapter";
@@ -214,7 +211,7 @@ public abstract class kk_DefaultConfig {
         DefConf.Controls[3].Global=true; //back button is global
        // DefConf.Controls[8].Global=false; //
       
-        for (int i=4;i<4+24;i++)
+        for (int i=4;i<4+23;i++)
         {
             DefConf.Controls[i].Global=false;
         }
