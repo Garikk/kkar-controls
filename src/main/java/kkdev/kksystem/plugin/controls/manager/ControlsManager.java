@@ -128,7 +128,7 @@ public class ControlsManager extends PluginManagerControls {
         HWAdapters = new HashMap<>();
 
         for (Control CTR : PluginSettings.MainConfiguration.Controls) {
-            System.out.println("[CTL] " +CTR.Name + " " + CTR.AdapterID);
+            //System.out.println("[CTL] " +CTR.Name + " " + CTR.AdapterID);
             if (!HWAdapters.containsKey(CTR.AdapterID)) {
                 HWAdapters.put(CTR.AdapterID, CreateAdapter(CTR.AdapterID));
             }
