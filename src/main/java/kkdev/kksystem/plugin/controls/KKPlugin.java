@@ -7,6 +7,8 @@ package kkdev.kksystem.plugin.controls;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import kkdev.kksystem.base.classes.base.PinData;
+import kkdev.kksystem.base.classes.base.PluginMessageData;
 import kkdev.kksystem.base.classes.plugins.PluginMessage;
 import kkdev.kksystem.base.classes.plugins.simple.KKPluginBase;
 import kkdev.kksystem.base.interfaces.IPluginBaseInterface;
@@ -32,7 +34,7 @@ public final class KKPlugin extends KKPluginBase {
     @Override
     public PluginMessage executePin(PluginMessage Pin) {
         super.executePin(Pin);
-       Global.PM.ReceivePin(Pin.PinName, Pin.PinData);
+       Global.PM.ReceivePin(Pin.pinName, (PinData) Pin.getPinData());
         return null;
     }
      @Override

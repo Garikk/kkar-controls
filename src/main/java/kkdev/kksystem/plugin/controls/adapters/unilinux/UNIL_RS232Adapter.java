@@ -6,7 +6,7 @@
 package kkdev.kksystem.plugin.controls.adapters.unilinux;
 
 import java.util.HashMap;
-import kkdev.kksystem.base.classes.base.PinBaseDataTaggedObj;
+import kkdev.kksystem.base.classes.base.PinDataTaggedObj;
 import kkdev.kksystem.base.classes.plugins.PluginMessage;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
@@ -47,7 +47,7 @@ public class UNIL_RS232Adapter implements IHWAdapter  {
     }
 
     @Override
-    public void receiveObjPin(PinBaseDataTaggedObj PM) {
+    public void receiveObjPin(PinDataTaggedObj PM) {
        // not used
     }
 

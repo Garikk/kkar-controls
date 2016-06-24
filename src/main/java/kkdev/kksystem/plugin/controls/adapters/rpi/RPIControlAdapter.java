@@ -15,7 +15,7 @@ import com.pi4j.io.gpio.RaspiPin;
 import com.pi4j.io.gpio.event.GpioPinDigitalStateChangeEvent;
 import com.pi4j.io.gpio.event.GpioPinListenerDigital;
 import java.util.HashMap;
-import kkdev.kksystem.base.classes.base.PinBaseDataTaggedObj;
+import kkdev.kksystem.base.classes.base.PinDataTaggedObj;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
 import kkdev.kksystem.plugin.controls.configuration.Control;
@@ -41,7 +41,7 @@ public class RPIControlAdapter implements IHWAdapter {
     }
 
     @Override
-    public void receiveObjPin(PinBaseDataTaggedObj PM) {
+    public void receiveObjPin(PinDataTaggedObj PM) {
        // not used
     }
 

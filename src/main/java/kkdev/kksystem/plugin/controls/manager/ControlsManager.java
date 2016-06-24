@@ -1,9 +1,10 @@
 package kkdev.kksystem.plugin.controls.manager;
 
 import java.util.HashMap;
-import kkdev.kksystem.base.classes.base.PinBaseCommand;
-import kkdev.kksystem.base.classes.base.PinBaseDataTaggedObj;
-import kkdev.kksystem.base.classes.controls.PinControlData;
+import kkdev.kksystem.base.classes.base.PinData;
+import kkdev.kksystem.base.classes.base.PinDataFtrCtx;
+import kkdev.kksystem.base.classes.base.PinDataTaggedObj;
+import kkdev.kksystem.base.classes.controls.PinDataControl;
 import kkdev.kksystem.base.classes.plugins.simple.managers.PluginManagerControls;
 import kkdev.kksystem.base.constants.PluginConsts;
 import static kkdev.kksystem.base.constants.SystemConsts.KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID;
@@ -44,7 +45,7 @@ public class ControlsManager extends PluginManagerControls {
                 String[] Target = GetTargetFeature(Ctrl);
 
                 for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinControlData.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
                 }
             }
 
@@ -53,7 +54,7 @@ public class ControlsManager extends PluginManagerControls {
                 String[] Target = GetTargetFeature(Ctrl);
 
                 for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinControlData.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
                 }
             }
 
@@ -62,7 +63,7 @@ public class ControlsManager extends PluginManagerControls {
                 String[] Target = GetTargetFeature(Ctrl);
 
                 for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinControlData.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
                 }
             }
 
@@ -71,7 +72,7 @@ public class ControlsManager extends PluginManagerControls {
                 String[] Target = GetTargetFeature(Ctrl);
 
                 for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinControlData.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
                 }
             }
 
@@ -80,7 +81,7 @@ public class ControlsManager extends PluginManagerControls {
                 String[] Target = GetTargetFeature(Ctrl);
 
                 for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinControlData.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
+                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
                 }
             }
 
@@ -172,19 +173,19 @@ public class ControlsManager extends PluginManagerControls {
         }
     }
 
-    public void ReceivePin(String PinName, Object PinData) {
+    public void ReceivePin(String PinName, PinData pinData) {
         switch (PinName) {
             case PluginConsts.KK_PLUGIN_BASE_PIN_COMMAND:
-                ProcessBaseCommand((PinBaseCommand) PinData);
+                ProcessBaseCommand((PinDataFtrCtx)pinData);
                 break;
             case PluginConsts.KK_PLUGIN_BASE_BASIC_TAGGEDOBJ_DATA:
-                ProcessObjPinData((PinBaseDataTaggedObj) PinData);
+                ProcessObjPinData((PinDataTaggedObj)pinData);
                 break;
         }
 
     }
 
-    private void ProcessObjPinData(PinBaseDataTaggedObj Obj) {
+    private void ProcessObjPinData(PinDataTaggedObj Obj) {
         if (Obj.tag.equals("SMARTHEAD")) {
             if (SmartheadAdapter != null) {
                 SmartheadAdapter.receiveObjPin(Obj);
@@ -192,9 +193,9 @@ public class ControlsManager extends PluginManagerControls {
         }
     }
 
-    private void ProcessBaseCommand(PinBaseCommand Command) {
-        switch (Command.baseCommand) {
-            case CHANGE_FEATURE:
+    private void ProcessBaseCommand(PinDataFtrCtx Command) {
+        switch (Command.managementCommand) {
+            case ChangeFeature:
                 ___CurrentUIContext = Command.changeUIContextID;
                 if (!currentFeature.containsKey(Command.changeUIContextID)) {
                     currentFeature.put(Command.changeUIContextID, Command.changeFeatureID);
@@ -205,8 +206,6 @@ public class ControlsManager extends PluginManagerControls {
                 } else {
                     currentFeature.put(Command.changeUIContextID, Command.changeFeatureID);
                 }
-                break;
-            case PLUGIN:
                 break;
         }
     }

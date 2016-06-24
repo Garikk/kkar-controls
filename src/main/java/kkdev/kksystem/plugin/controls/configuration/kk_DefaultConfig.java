@@ -6,7 +6,7 @@
 package kkdev.kksystem.plugin.controls.configuration;
 
 import java.util.HashSet;
-import static kkdev.kksystem.base.classes.controls.PinControlData.*;
+import static kkdev.kksystem.base.classes.controls.PinDataControl.*;
 import kkdev.kksystem.plugin.controls.configuration.ControlsConfig.AdapterType;
 
 
