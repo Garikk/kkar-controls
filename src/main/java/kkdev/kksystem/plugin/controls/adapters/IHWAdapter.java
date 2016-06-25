@@ -5,8 +5,7 @@
  */
 package kkdev.kksystem.plugin.controls.adapters;
 
-import kkdev.kksystem.base.classes.base.PinDataTaggedObj;
-import kkdev.kksystem.base.classes.plugins.PluginMessage;
+import kkdev.kksystem.base.classes.base.PinDataTaggedString;
 import kkdev.kksystem.plugin.controls.configuration.Control;
 
 /**
@@ -17,5 +16,5 @@ public interface IHWAdapter {
     public void registerControl(Control Ctrl,IHWAdapterCallback Callback);
     public void setActive();
     public void setInactive();
-    public void receiveObjPin(PinDataTaggedObj PM);
+    public void receiveStringPin(PinDataTaggedString PM);
 }

@@ -7,7 +7,7 @@ package kkdev.kksystem.plugin.controls.adapters.smarthead;
 
 import java.util.HashMap;
 import java.util.Map;
-import kkdev.kksystem.base.classes.base.PinDataTaggedObj;
+import kkdev.kksystem.base.classes.base.PinDataTaggedString;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
 import kkdev.kksystem.plugin.controls.configuration.Adapter;
@@ -53,7 +53,7 @@ public class Smarthead implements IHWAdapter {
     }
 
     @Override
-    public void receiveObjPin(PinDataTaggedObj ObjDat) {
+    public void receiveStringPin(PinDataTaggedString ObjDat) {
         
         if (!ObjDat.tag.equals(Configuration.UNILPort)) {
             return;

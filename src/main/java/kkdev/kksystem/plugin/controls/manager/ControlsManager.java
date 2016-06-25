@@ -4,6 +4,7 @@ import java.util.HashMap;
 import kkdev.kksystem.base.classes.base.PinData;
 import kkdev.kksystem.base.classes.base.PinDataFtrCtx;
 import kkdev.kksystem.base.classes.base.PinDataTaggedObj;
+import kkdev.kksystem.base.classes.base.PinDataTaggedString;
 import kkdev.kksystem.base.classes.controls.PinDataControl;
 import kkdev.kksystem.base.classes.plugins.simple.managers.PluginManagerControls;
 import kkdev.kksystem.base.constants.PluginConsts;
@@ -180,16 +181,16 @@ public class ControlsManager extends PluginManagerControls {
                 ProcessBaseCommand((PinDataFtrCtx)pinData);
                 break;
             case PluginConsts.KK_PLUGIN_BASE_BASIC_TAGGEDOBJ_DATA:
-                ProcessObjPinData((PinDataTaggedObj)pinData);
+                ProcessStrPinData((PinDataTaggedString)pinData);
                 break;
         }
 
     }
 
-    private void ProcessObjPinData(PinDataTaggedObj Obj) {
+    private void ProcessStrPinData(PinDataTaggedString Obj) {
         if (Obj.tag.equals("SMARTHEAD")) {
             if (SmartheadAdapter != null) {
-                SmartheadAdapter.receiveObjPin(Obj);
+                SmartheadAdapter.receiveStringPin(Obj);
             }
         }
     }

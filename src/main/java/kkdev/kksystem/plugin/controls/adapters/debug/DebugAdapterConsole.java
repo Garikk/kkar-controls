@@ -8,6 +8,7 @@ package kkdev.kksystem.plugin.controls.adapters.debug;
 import java.util.HashMap;
 import java.util.Map;
 import kkdev.kksystem.base.classes.base.PinDataTaggedObj;
+import kkdev.kksystem.base.classes.base.PinDataTaggedString;
 import static kkdev.kksystem.base.classes.controls.PinDataControl.*;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
@@ -88,7 +89,7 @@ public class DebugAdapterConsole implements IHWAdapter {
     }
 
     @Override
-    public void receiveObjPin(PinDataTaggedObj PM) {
+    public void receiveStringPin(PinDataTaggedString PM) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

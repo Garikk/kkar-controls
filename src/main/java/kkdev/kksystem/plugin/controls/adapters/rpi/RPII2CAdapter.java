@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import kkdev.kksystem.base.classes.base.PinDataTaggedObj;
+import kkdev.kksystem.base.classes.base.PinDataTaggedString;
 import kkdev.kksystem.base.classes.plugins.PluginMessage;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapter;
 import kkdev.kksystem.plugin.controls.adapters.IHWAdapterCallback;
@@ -76,7 +77,7 @@ public class RPII2CAdapter implements IHWAdapter  {
     }
 
     @Override
-    public void receiveObjPin(PinDataTaggedObj PM) {
+    public void receiveStringPin(PinDataTaggedString PM) {
         // not used
     }
 
