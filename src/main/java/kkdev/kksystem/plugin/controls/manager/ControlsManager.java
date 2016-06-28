@@ -198,15 +198,15 @@ public class ControlsManager extends PluginManagerControls {
     private void ProcessBaseCommand(PinDataFtrCtx Command) {
         switch (Command.managementCommand) {
             case ChangeFeature:
-                ___CurrentUIContext = Command.changeUIContextID;
-                if (!currentFeature.containsKey(Command.changeUIContextID)) {
-                    currentFeature.put(Command.changeUIContextID, Command.changeFeatureID);
+                ___CurrentUIContext = Command.manageUIContextID;
+                if (!currentFeature.containsKey(Command.manageUIContextID)) {
+                    currentFeature.put(Command.manageUIContextID, Command.manageFeatureID);
                 }
 
-                if (currentFeature.get(Command.changeUIContextID).equals(Command.changeFeatureID)) {
+                if (currentFeature.get(Command.manageUIContextID).equals(Command.manageFeatureID)) {
                     return;
                 } else {
-                    currentFeature.put(Command.changeUIContextID, Command.changeFeatureID);
+                    currentFeature.put(Command.manageUIContextID, Command.manageFeatureID);
                 }
                 break;
         }
