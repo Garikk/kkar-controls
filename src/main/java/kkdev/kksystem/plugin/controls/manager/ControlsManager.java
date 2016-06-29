@@ -117,7 +117,8 @@ public class ControlsManager extends PluginManagerControls {
     }
 
     public void InitControls(KKPlugin PConnector) {
-        connector = PConnector;
+        setPluginConnector(PConnector);
+        //connector = PConnector;
         //
         //Only one feature supported by now
         //
