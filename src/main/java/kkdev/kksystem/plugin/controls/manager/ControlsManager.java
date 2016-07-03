@@ -1,6 +1,8 @@
 package kkdev.kksystem.plugin.controls.manager;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import kkdev.kksystem.base.classes.base.PinData;
 import kkdev.kksystem.base.classes.base.PinDataFtrCtx;
 import kkdev.kksystem.base.classes.base.PinDataTaggedObj;
@@ -43,62 +45,56 @@ public class ControlsManager extends PluginManagerControls {
         this.AdapterCallback = new IHWAdapterCallback() {
             @Override
             public void Control_Triggered(Control Ctrl) {
-                String[] Target = GetTargetFeature(Ctrl);
+                Set<String> Target = GetTargetFeature(Ctrl);
 
-                for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
-                }
+                CONTROL_SendPluginMessageData(Target, GetTargetUIContext(Ctrl), Target, Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_TRIGGERED, 1);
             }
 
             @Override
             public void Control_SwitchOn(Control Ctrl) {
-                String[] Target = GetTargetFeature(Ctrl);
+                Set<String> Target = GetTargetFeature(Ctrl);
 
-                for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
-                }
+                CONTROL_SendPluginMessageData(Target, GetTargetUIContext(Ctrl), Target, Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_ACTIVATE, 1);
             }
 
             @Override
             public void Control_SwitchOff(Control Ctrl) {
-                String[] Target = GetTargetFeature(Ctrl);
+                Set<String> Target = GetTargetFeature(Ctrl);
 
-                for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
-                }
+                CONTROL_SendPluginMessageData(Target, GetTargetUIContext(Ctrl), Target, Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_DEACTIVATE, 0);
+
             }
 
             @Override
             public void Control_ChangeState(Control Ctrl, int State) {
-                String[] Target = GetTargetFeature(Ctrl);
+                Set<String> Target = GetTargetFeature(Ctrl);
 
-                for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
-                }
+                CONTROL_SendPluginMessageData(Target, GetTargetUIContext(Ctrl), Target, Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_CHANGEVALUE, State);
+
             }
 
             @Override
             public void Control_LongPress(Control Ctrl, int State) {
-                String[] Target = GetTargetFeature(Ctrl);
+                Set<String> Target = GetTargetFeature(Ctrl);
 
-                for (String TR : Target) {
-                    CONTROL_SendPluginMessageData(TR, GetTargetUIContext(Ctrl), Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
-                }
+       
+                    CONTROL_SendPluginMessageData(Target, GetTargetUIContext(Ctrl),Target, Ctrl.buttonID, PinDataControl.KK_CONTROL_DATA.CONTROL_LONGPRESS, State);
+
             }
 
-            private String[] GetTargetFeature(Control Ctrl) {
-                String Ret[];
+            private Set<String> GetTargetFeature(Control Ctrl) {
+                Set<String> Ret;
 
                 if (Ctrl.FixedFeature) {
-                    Ret = new String[1];
-                    Ret[0] = Ctrl.FixedFeatureTarget;
+                    Ret = new LinkedHashSet<>();
+                    Ret.add(Ctrl.FixedFeatureTarget);
                 } else if (Ctrl.Global) {
-                    Ret = new String[2];
-                    Ret[0] = KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID;
-                    Ret[1] = currentFeature.get(___CurrentUIContext);
+                    Ret = new LinkedHashSet<>();
+                    Ret.add(KK_BASE_FEATURES_SYSTEM_MULTIFEATURE_UID);
+                    Ret.add(currentFeature.get(___CurrentUIContext));
                 } else {
-                    Ret = new String[1];
-                    Ret[0] = currentFeature.get(___CurrentUIContext);
+                    Ret = new LinkedHashSet<>();
+                    Ret.add(currentFeature.get(___CurrentUIContext));
                 }
 
                 return Ret;
