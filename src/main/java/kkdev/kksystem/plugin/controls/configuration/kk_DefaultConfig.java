@@ -137,10 +137,13 @@ public abstract class kk_DefaultConfig {
 
         DefConf.Controls[13].Name = "CUSTOM_CHRY_CLOCK_H";
         DefConf.Controls[13].buttonID.add("CUSTOM_CHRY_CLOCK_H");
+        DefConf.Controls[13].buttonID.add(DEF_BTN_VOL_INC);
         DefConf.Controls[13].AdapterSource = "H";
         
         DefConf.Controls[14].Name = "CUSTOM_CHRY_CLOCK_M";
         DefConf.Controls[14].buttonID.add("CUSTOM_CHRY_CLOCK_M");
+        DefConf.Controls[14].buttonID.add(DEF_BTN_VOL_DEC);
+        
         DefConf.Controls[14].AdapterSource = "M";
 
         DefConf.Controls[15].Name = "CUSTOM_CHRY_TUNE_FF";
