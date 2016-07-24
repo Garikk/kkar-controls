@@ -163,12 +163,12 @@ public abstract class kk_DefaultConfig {
         DefConf.Controls[18].Name = "CUSTOM_CHRY_VOL_UP";
         DefConf.Controls[18].buttonID.add("CUSTOM_CHRY_VOL_UP");
         DefConf.Controls[18].buttonID.add(DEF_BTN_VOL_INC);
-        DefConf.Controls[18].AdapterSource = "VU";
+        DefConf.Controls[18].AdapterSource = "VOLDOWN"; //CHANGE!! wrong id in arduino code
         
         DefConf.Controls[19].Name = "CUSTOM_CHRY_VOL_DOWN";
         DefConf.Controls[19].buttonID.add("CUSTOM_CHRY_VOL_DOWN");
         DefConf.Controls[19].buttonID.add(DEF_BTN_VOL_DEC);
-        DefConf.Controls[19].AdapterSource = "VD";
+        DefConf.Controls[19].AdapterSource = "VOLUP";//CHANGE!! wrong id in arduino code
         
         DefConf.Controls[20].Name = "CUSTOM_CHRY_BAL_L";
         DefConf.Controls[20].buttonID.add("CUSTOM_CHRY_BAL_L");
