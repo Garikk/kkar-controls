@@ -5,13 +5,13 @@
  */
 package kkdev.kksystem.plugin.controls.configuration;
 
-import kkdev.kksystem.base.classes.plugins.ExternalConfiguration;
+import kkdev.kksystem.base.classes.plugins.PluginConfiguration;
 
 /**
  *
  * @author blinov_is
  */
-public class ControlsConfig extends ExternalConfiguration {
+public class ControlsConfig extends PluginConfiguration {
     public enum ControlType {
         Button,
         ButtonWithStates,
