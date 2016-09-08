@@ -11,8 +11,8 @@ import kkdev.kksystem.base.classes.base.PinData;
 import kkdev.kksystem.base.classes.base.PluginMessageData;
 import kkdev.kksystem.base.classes.plugins.PluginMessage;
 import kkdev.kksystem.base.classes.plugins.simple.KKPluginBase;
-import kkdev.kksystem.base.interfaces.IPluginBaseInterface;
 import kkdev.kksystem.plugin.controls.manager.ControlsManager;
+import kkdev.kksystem.base.interfaces.IPluginBaseConnection;
 
 /**
  *
@@ -25,7 +25,7 @@ public final class KKPlugin extends KKPluginBase {
     }
 
     @Override
-    public void pluginInit(IPluginBaseInterface BaseConnector, String GlobalConfUID) {
+    public void pluginInit(IPluginBaseConnection BaseConnector, String GlobalConfUID) {
         super.pluginInit(BaseConnector, GlobalConfUID); //To change body of generated methods, choose Tools | Templates.
          Global.PM.InitControls(this);
     }
