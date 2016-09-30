@@ -9,10 +9,12 @@ package kkdev.kksystem.plugin.controls;
  */
 import kkdev.kksystem.base.classes.base.PinData;
 import kkdev.kksystem.base.classes.base.PluginMessageData;
+import kkdev.kksystem.base.classes.plugins.PluginConfiguration;
 import kkdev.kksystem.base.classes.plugins.PluginMessage;
 import kkdev.kksystem.base.classes.plugins.simple.KKPluginBase;
 import kkdev.kksystem.plugin.controls.manager.ControlsManager;
 import kkdev.kksystem.base.interfaces.IPluginBaseConnection;
+import kkdev.kksystem.plugin.controls.configuration.PluginSettings;
 
 /**
  *
@@ -44,5 +46,9 @@ public final class KKPlugin extends KKPluginBase {
      @Override
     public void pluginStop() {
       Global.PM.PluginStop();
+    }
+     @Override
+    public PluginConfiguration getPluginSettings() {
+       return PluginSettings.MainConfiguration;
     }
 }
