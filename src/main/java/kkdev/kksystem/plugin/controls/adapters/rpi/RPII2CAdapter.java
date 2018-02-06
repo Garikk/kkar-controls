@@ -61,6 +61,8 @@ public class RPII2CAdapter implements IHWAdapter  {
         } catch (IOException ex) {
             Logger.getLogger(RPII2CAdapter.class.getName()).log(Level.SEVERE, null, ex);
 
+        } catch (I2CFactory.UnsupportedBusNumberException ex) {
+            Logger.getLogger(RPII2CAdapter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
